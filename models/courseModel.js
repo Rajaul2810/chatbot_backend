@@ -30,6 +30,8 @@ const getCourseInfo = (userInput) => {
     return courseFees.SpokenEnglish;
   } else if (input.includes('package') || input.includes('packages') || input.includes('bundle')) {
     return courseFees.packages;
+  } else if (input.includes('branch') || input.includes('branches')) {
+    return courseFees.branches;
   } else {
     return null;
   }
@@ -52,6 +54,7 @@ const getCoursesContext = async () => {
 
     lines.push('\n');
   }
+  console.log(lines);
 
   return lines.join('\n');
 };

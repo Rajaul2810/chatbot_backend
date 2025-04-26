@@ -1,411 +1,534 @@
 {
-  "courses": {
-      "IELTS": {
-          "Regular": {
-              "numberOfClasses": "28",
-              "FreeResources": "Pre-recorded lectures - 1.IELTS Writing 2.IELTS Reading 3.IELTS Listening 4.Sentence Making ",
-              "mockTest": "20 mock tests",
-              "mockTestValidity": "1 year",
-              "courseDuration": "3.5 months but mock valid for 1 year, 3 days per week ",
-              "classDuration": "2hours",
-              "onCampusIncludes": {
-                  "onCampusPrice": 12650,
-                  "remarks": "complete IELTS guidance, preparing for studying abroad",
-                  "howToBuy": "Call or Visit a nearest Mentors' Branch and get admission."
-              },
-              "onlineIncludes": {
-                  "onlinePrice": 8400,
-                  "remarks": "Zoom class, Join classes from mentorsLearning website. Mock test can be scheduled from My learning portal into any branch",
-                  "howToBuy": "Visit mentorslearning.com and find Online IELTS Regular under live courses category."
-              },
-              "includes": {
-                  "mockTest": "20 mock tests"
-              }
-          },
-          "Crash": {
-              "numberOfClasses": "16",
-              "FreeResources": "Pre-recorded lectures - 1.IELTS Writing 2.IELTS Reading 3.IELTS Listening 4.Sentence Making ",
-              "mockTest": "10 mock tests",
-              "mockTestValidity": "1 year",
-              "courseDuration": "1.5 months but mock valid for 1 year, 4 days per week",
-              "classDuration": "2hours",
-              "onCampusIncludes": {
-                  "onCampusPrice": 8400,
-                  "remarks": "Finished in short amount of time, suitable for students who want moderate understanding of IELTS",
-                  "howToBuy": "Call or Visit a nearest Mentors' Branch and get admission."
-              },
-              "onlineIncludes": {
-                  "onlinePrice": 6000,
-                  "remarks": "same as on campus IELTS.",
-                  "howToBuy": "Visit mentorslearning.com and find Online IELTS crash under live courses category."
-              },
-              "includes": {
-                  "mockTest": "10 mock tests"
-              }
-          },
-          "Executive": {
-              "numberOfClasses": "28",
-              "FreeResources": "Pre-recorded lectures - 1.IELTS Writing 2.IELTS Reading 3.IELTS Listening 4.Sentence Making ",
-              "mockTest": "20 mock tests",
-              "mockTestValidity": "1 year",
-              "courseDuration": "3.5 months but mock valid for 1 year, 2 days per week (Only saturday and sunday)",
-              "classDuration": "2hours",
-              "onCampusIncludes": {
-                  "onCampusPrice": 12650,
-                  "remarks": "Same as Online IELTS Regular. only weekends class, Best for professionals",
-                  "howToBuy": "Call or Visit a nearest Mentors' Branch and get admission."
-              },
-              "onlineIncludes": {
-                  "onlinePrice": 8400,
-                  "remarks": "Same as Online IELTS Regular. only weekends class, Best for professional",
-                  "howToBuy": "Visit mentorslearning.com and find Online IELTS Regular under live courses category."
-              },
-              "includes": {
-                  "mockTest": "20 mock tests"
-              }
-          },
-          "MockTests": {
-              "3": 2100,
-              "5": 3000,
-              "10": 4500,
-              "15": 5000,
-              "20": 5500,
-              "remarks": "validity for 3 & 5 mocks - 1month, 10 - 2months, 15 & 20 - 3 Months, call or visit mentors' to purchase "
-          },
-          "BasicPackage": {
-              "onCampus": 17500,
-              "online": 12000,
-              "includes": [
-                  "Grammar & Writing",
-                  "Spoken English",
-                  "IELTS Regular",
-                  "20 MockTests and valid for 1 year"
-              ],
-              "duration": "7 months but mock valid for 1 year"
-          }
-      },
-      "SAT": {
-          "Regular": {
-              "numberOfClasses": "30",
-              "FreeResources": "Videos & topic tests",
-              "mockTest": "5 mock tests",
-              "courseDuration": "1.5 months, 3 days/week",
-              "onCampusIncludes": {
-                  "onCampusPrice": 15525,
-                  "remarks": "Covers all SAT sections with expert guidance.",
-                  "howToBuy": "Call or visit a Mentors branch."
-              },
-              "onlineIncludes": {
-                  "onlinePrice": 10000,
-                  "remarks": "Same content online with flexibility.",
-                  "howToBuy": "Visit mentorslearning.com"
-              },
-              "includes": {
-                  "mockTest": "5 mock tests"
-              }
-          },
-          "SATPlusIELTSRegular": {
-              "numberOfClasses": "30",
-              "FreeResources": "Videos & topic tests",
-              "mockTest": "5 mock tests",
-              "courseDuration": "1.5 months, 3 days/week",
-              "onCampusIncludes": {
-                  "onCampusPrice": 21500,
-                  "remarks": "Combined SAT + IELTS Regular prep.",
-                  "howToBuy": "Call or visit a Mentors branch."
-              },
-              "onlineIncludes": {
-                  "onlinePrice": "Not specified",
-                  "remarks": "Online option for flexible learning.",
-                  "howToBuy": "Visit mentorslearning.com"
-              },
-              "includes": {
-                  "mockTest": "5 mock tests"
-              }
-          },
-          "SATPlusIELTSCrash": {
-              "numberOfClasses": "30",
-              "FreeResources": "Videos & topic tests",
-              "mockTest": "5 mock tests",
-              "courseDuration": "1.5 months, 3 days/week",
-              "onCampusIncludes": {
-                  "onCampusPrice": 18000,
-                  "remarks": "Faster SAT + IELTS Crash prep.",
-                  "howToBuy": "Call or visit a Mentors branch."
-              },
-              "onlineIncludes": {
-                  "onlinePrice": "Not specified",
-                  "remarks": "Online version for quick prep.",
-                  "howToBuy": "Visit mentorslearning.com"
-              },
-              "includes": {
-                  "mockTest": "5 mock tests"
-              }
-          },
-          "MockTests": {
-              "5": "Included in all packages"
-          }
-      },
-      "GED": {
-          "Overview": {
-              "description": "US-based Grade 12 equivalency certificate",
-              "subjects": [
-                  "Reasoning Through Language Arts",
-                  "Mathematical Reasoning",
-                  "Science",
-                  "Social Studies"
-              ],
-              "examFormat": "Computer-based, instant results, conducted at Pearson VUE centers."
-          },
-          "CourseStructure": {
-              "totalClasses": 150,
-              "classDuration": "1.5 hours",
-              "weeklyClasses": "10 classes/week (5 days)",
-              "subjectWiseClasses": {
-                  "RLA": 50,
-                  "SocialStudies": 25,
-                  "Science": 25,
-                  "Math": 25
-              },
-              "mockTests": 10,
-              "solveClasses": 5,
-              "practiceTests": 12
-          },
-          "Features": [
-              "Authorized GED prep center in Dhaka & Chattogram",
-              "Certified faculty trained by GED Testing Service",
-              "GED-aligned resources & mocks",
-              "Intensive care and doubt classes for weak students",
-              "One-stop service: classes, mocks, registration, final exam, credential"
-          ],
-          "TestCenters": [
-              "Kalabagan",
-              "Banani",
-              "Mirpur",
-              "Uttara Campus 1",
-              "Uttara Campus 2",
-              "Chattogram"
-          ],
-          "HowToApply": {
-              "online": "https://mentors.com.bd/education-apply-online/",
-              "phone": "09610883388"
-          }
-      },
-      "PTE": {
-          "Regular": {
-              "numberOfClasses": "22",
-              "FreeResources": [
-                  "PTE Academic Online Course (23 Lessons)",
-                  "Advanced Vocabulary (11 Lessons)",
-                  "Basics of Sentence Making (5 Lessons)",
-                  "Phonetics Made Easy (5 Lessons)"
-              ],
-              "mockTest": "5 AI-scored mock tests",
-              "courseDuration": "2 months, 3 days/week",
-              "onCampusIncludes": {
-                  "onCampusPrice": 12650,
-                  "remarks": "Covers all modules with revision; includes support center access.",
-                  "howToBuy": "Call or visit a Mentors branch."
-              },
-              "onlineIncludes": {
-                  "onlinePrice": 10000,
-                  "remarks": "Same as on-campus with extra flexibility and recordings, comparatively easier",
-                  "howToBuy": "Visit mentorslearning.com and find Online PTE under live courses."
-              },
-              "includes": {
-                  "supportCenter": "Unlimited interviews and listening practice"
-              }
-          }
-      },
-      "SpokenEnglish": {
-          "numberOfClasses": 22,
-          "courseDuration": "2 months (8 weeks), 3 days/week",
-          "classDuration": "2 hours",
-          "exams": 2,
-          "onCampusPrice": 7705,
-          "onlinePrice": 4100,
-          "remarks": "Enhances speaking skills through interactive activities and phonetics.",
-          "FreeResources": [
-              "Resume Writing (5 Lessons)",
-              "Email Writing (4 Lessons)",
-              "Advanced Vocabulary (11 Lessons)",
-              "Phonetics Made Easy (5 Lessons)"
-          ],
-          "includes": [
-              "2 months access to Language Club",
-              "Free membership to Mentors' Learning",
-              "Access to recorded courses and resources"
-          ],
-          "howToBuy": {
-              "onCampus": "Call or visit a Mentors branch.",
-              "online": "Visit mentorslearning.com"
-          }
-      },
-      "GrammarWriting": {
-          "numberOfClasses": 22,
-          "courseDuration": "2 months (8 weeks), 3 days/week",
-          "classDuration": "2 hours",
-          "exams": 2,
-          "onCampusPrice": 6440,
-          "onlinePrice": 3800,
-          "remarks": "Builds grammar foundation and writing skills for academic and exam purposes.",
-          "FreeResources": [
-              "Paragraph Writing (5 Lessons)",
-              "Essay Writing (5 Lessons)",
-              "Email Writing (4 Lessons)",
-              "Basics of Sentence Making (5 Lessons)"
-          ],
-          "includes": [
-              "Access to Language Club",
-              "Support center sessions",
-              "Lecture sheets and practice materials"
-          ],
-          "howToBuy": {
-              "onCampus": "Call or visit a Mentors branch.",
-              "online": "Visit mentorslearning.com"
-          }
-      },
-      "AdvancedWritingCourse": {
-          "courseDuration": "5 weeks (On-campus), 2 months (Online)",
-          "numberOfClasses": 14,
-          "classSchedule": "3 days/week",
-          "classDuration": "2 hours/class",
-          "deliveryModes": {
-              "onCampus": {
-                  "price": "7000",
-                  "remarks": "Ideal for students and professionals seeking in-person instruction."
-              },
-              "online": {
-                  "price": "3150",
-                  "remarks": "Flexible learning for remote students."
-              }
-          },
-          "courseContents": [
-              "Mastering tenses and sentence formation",
-              "Using connectors and transitions",
-              "Applying relative and participle clauses",
-              "Summary writing and paraphrasing",
-              "Formal vs. informal writing",
-              "Writing essays, letters, resumes, and applications"
-          ],
-          "targetAudience": [
-              "IELTS candidates",
-              "University students",
-              "BCS and government job aspirants",
-              "Professionals improving business writing"
-          ],
-          "howToBuy": {
-              "onCampus": "Call or visit a Mentors branch.",
-              "online": "Visit mentorslearning.com"
-          }
-      },
-      "PrivateUniversityAdmission": {
-          "courseDuration": "1.5 months",
-          "classSchedule": "4 classes/week",
-          "classDuration": "1.5 hours/class",
-          "recordedClasses": {
-              "total": 52,
-              "subjects": {
-                  "Physics": 10,
-                  "Chemistry": 9,
-                  "HigherMaths": 9,
-                  "Biology": 22,
-                  "Architecture": 2
-              }
-          },
-          "freeResources": [
-              "6 Pre-recorded Courses"
-          ],
-          "mockTests": {
-              "count": 10
-          },
-          "fees": {
-              "price": "Tk 3,450"
-          },
-          "remarks": "preparation for private universities like NSU, BRAC, EWU, AIUB, UIU, IUB for all courses.",
-          "howToBuy": "Visit mentorslearning.com and enroll in the course."
-      },
-      "JuniorEnglish": {
-          "courseDuration": "3 months",
-          "numberOfClasses": 24,
-          "classDuration": "2 hours/class",
-          "targetAudience": "Students of Class 5–9",
-          "skillsCovered": [
-              "Communication",
-              "Grammar",
-              "Vocabulary",
-              "Writing",
-              "Presentation",
-              "Active Listening",
-              "Critical Analysis",
-              "Speed Reading"
-          ],
-          "fees": {
-              "price": "4,830"
-          },
-          "remarks": "English skills development for class 5-9 students .",
-          "howToBuy": "Visit mentorslearning.com and enroll in the course."
-      },
-      "AbacusBrainDevelopment": {
-          "courseDuration": "3 months",
-          "numberOfClasses": 24,
-          "classDuration": "1.5 hours/class",
-          "targetAudience": "Children aiming to enhance mental arithmetic skills",
-          "fees": {
-              "price": "6,210"
-          },
-          "remarks": "Enhances mental arithmetic and cognitive skills through abacus training.",
-          "howToBuy": "Visit mentorslearning.com and enroll in the course."
-      },
-      "KidsEnglish": {
-          "courseDuration": "4 months",
-          "numberOfClasses": 34,
-          "classDuration": "1.5 hours/class",
-          "targetAudience": "Bangladeshi children aged 4–9 years",
-          "targetLevel": "A1–A2 CEFR (Beginner to Elementary)",
-          "features": [
-              "Thematic lessons (e.g., greetings, family, hobbies)",
-              "Interactive activities: games, songs, storytelling, crafts",
-              "Visual aids: colorful illustrations, flashcards",
-              "Cultural elements of Bangladesh",
-              "Regular reviews and assessments"
-          ],
-          "fees": {
-              "onCampus": "18,400",
-              "price": "30% discount available"
-          },
-          "remarks": "foundational skills development for kids of 4-9 years of age",
-          "howToBuy": "Visit mentorslearning.com and enroll in the course."
-      }
-  },
-  "packages": {
-      "offeredBundles": {
-          "ieltsBasicPackage": {
-              "includedCourses": [
-                  "Online IELTS Regular",
-                  "Online Spoken English & Phonetics",
-                  "Online foundation grammar and writing"
-              ],
-              "price": "12000"
-          },
-          "juniorComboOffer": {
-              "includedCourses": [
-                  "Junior English Allrounder Online",
-                  "Abacus Brain Development"
-              ],
-              "price": "8100"
-          },
-          "mentalMathCompletePackage": {
-              "includedCourses": [
-                  "Abacus Brain Development",
-                  "Abacus Brain Development Level-2",
-                  "Abacus Brain Development Level-3",
-                  "Abacus Brain Development Level-4"
-              ],
-              "price": "15500"
-          }
-      },
-      "howToBuy": "Visit mentorslearning.com and enroll in the course."
-  }
-  
+    "courses": {
+        "IELTS": {
+            "Regular": {
+                "numberOfClasses": "28",
+                "freeResources": [
+                    "Pre-recorded IELTS Writing",
+                    "IELTS Reading",
+                    "IELTS Listening",
+                    "Sentence Making"
+                ],
+                "mockTest": "20 mock tests",
+                "mockTestValidity": "1 year",
+                "courseDuration": "3.5 months but mock valid for 1 year",
+                "classDuration": "2hours",
+                "price": {
+                    "onCampus": 12650,
+                    "online": 8400
+                },
+                "remarks": "complete IELTS guidance, preparing for studying abroad",
+                "howToBuy": {
+                    "type": "callOrWebsite",
+                    "onCampusNote": "Call or Visit a nearest Mentors' Branch.",
+                    "onlineNote": "Visit url https://mentorslearning.com and find Online IELTS Regular under live courses category."
+                },
+                "includes": {
+                    "mockTest": "20 mock tests"
+                }
+            },
+            "Crash": {
+                "numberOfClasses": "16",
+                "freeResources": [
+                    "Pre-recorded IELTS Writing",
+                    "IELTS Reading",
+                    "IELTS Listening",
+                    "Sentence Making"
+                ],
+                "mockTest": "10 mock tests",
+                "mockTestValidity": "1 year",
+                "courseDuration": "1.5 months but mock valid for 1 year",
+                "classDuration": "2hours",
+                "price": {
+                    "onCampus": 8400,
+                    "online": 6000
+                },
+                "remarks": "Finished in short amount of time, suitable for students who want moderate understanding of IELTS",
+                "howToBuy": {
+                    "type": "callOrWebsite",
+                    "onCampusNote": "Call or Visit a nearest Mentors' Branch and get admission.",
+                    "onlineNote": "Visit url https://mentorslearning.com and find Online IELTS crash under live courses category."
+                },
+                "includes": {
+                    "mockTest": "10 mock tests"
+                }
+            },
+            "Executive": {
+                "numberOfClasses": "28",
+                "freeResources": [
+                    "Pre-recorded IELTS Writing",
+                    "IELTS Reading",
+                    "IELTS Listening",
+                    "Sentence Making"
+                ],
+                "mockTest": "20 mock tests",
+                "mockTestValidity": "1 year",
+                "courseDuration": "3.5 months but mock valid for 1 year",
+                "classDuration": "2hours",
+                "price": {
+                    "onCampus": 12650,
+                    "online": 8400
+                },
+                "remarks": "Same as Online IELTS Regular. only weekends class, Best for professionals",
+                "howToBuy": {
+                    "type": "callOrWebsite",
+                    "onCampusNote": "Call or Visit a nearest Mentors' Branch and get admission.",
+                    "onlineNote": "Visit url https://mentorslearning.com and find Online IELTS Regular under live courses category."
+                },
+                "includes": {
+                    "mockTest": "20 mock tests"
+                }
+            },
+            "mockTest": {
+                "3": 2100,
+                "5": 3000,
+                "10": 4500,
+                "15": 5000,
+                "20": 5500,
+                "remarks": "if only purchased mock then validity for 3 & 5 mocks - 1month, 10 - 2months, 15 & 20 - 3 Months, call or visit mentors' to purchase mock test but this validity is not included in any package or course",
+                "howToBuy": {
+                    "type": "callOrBranch",
+                    "onCampus": "only call or visit a Mentors branch."
+                }
+            },
+            "BasicPackage": {
+                "price": {
+                    "onCampus": 17500,
+                    "online": 12000
+                },
+                "includes": [
+                    "Grammar & Writing",
+                    "Spoken English",
+                    "IELTS Regular",
+                    "20 MockTests and valid for 1 year"
+                ],
+                "duration": "7 months but mock valid for 1 year"
+            }
+        },
+        "SAT": {
+            "Regular": {
+                "numberOfClasses": "30",
+                "FreeResources": "Videos & topic tests",
+                "mockTest": "5 mock tests",
+                "courseDuration": "1.5 months, 3 days/week",
+                "price": {
+                    "onCampus": 15525,
+                    "online": 10000
+                },
+                "remarks": "Covers all SAT sections with expert guidance.",
+                "howToBuy": {
+                    "type": "callOrWebsite",
+                    "onCampus": "Call or visit a Mentors branch.",
+                    "online": "Visit url https://mentorslearning.com"
+                },
+
+                "includes": {
+                    "mockTest": "5 mock tests"
+                }
+            },
+            "SATPlusIELTSRegular": {
+                "numberOfClasses": "30",
+                "FreeResources": "Videos & topic tests",
+                "mockTest": "5 mock tests",
+                "courseDuration": "1.5 months, 3 days/week",
+                "onCampus": {
+                    "price": 21500,
+                    "remarks": "Combined SAT + IELTS Regular prep.",
+                    "howToBuy": "Call or visit a Mentors branch."
+                },
+                "online": {
+                    "price": "Not specified",
+                    "remarks": "Online option for flexible learning.",
+                    "howToBuy": "Visit url https://mentorslearning.com and find Online IELTS Regular under live courses category."
+                },
+                "includes": {
+                    "mockTest": "5 mock tests"
+                }
+            },
+            "SATPlusIELTSCrash": {
+                "numberOfClasses": "30",
+                "FreeResources": "Videos & topic tests",
+                "mockTest": "5 mock tests",
+                "courseDuration": "1.5 months, 3 days/week",
+                "onCampus": {
+                    "price": 18000,
+                    "remarks": "Faster SAT + IELTS Crash prep.",
+                    "howToBuy": "Call or visit a Mentors branch."
+                },
+                "online": {
+                    "price": "Not specified",
+                    "remarks": "Online version for quick prep.",
+                    "howToBuy": "Visit url https://mentorslearning.com and find Online IELTS Crash under live courses category. "
+                },
+                "includes": {
+                    "mockTest": "5 mock tests"
+                }
+            },
+            "MockTests": {
+                "5": "Included in all packages"
+            }
+        },
+        "GED": {
+            "Overview": {
+                "description": "US-based Grade 12 equivalency certificate",
+                "subjects": [
+                    "Reasoning Through Language Arts",
+                    "Mathematical Reasoning",
+                    "Science",
+                    "Social Studies"
+                ],
+                "examFormat": "Computer-based, instant results, conducted at Pearson VUE centers."
+            },
+            "CourseStructure": {
+                "totalClasses": 150,
+                "classDuration": "1.5 hours",
+                "weeklyClasses": "10 classes/week (5 days)",
+                "subjectWiseClasses": {
+                    "RLA": 50,
+                    "SocialStudies": 25,
+                    "Science": 25,
+                    "Math": 25
+                },
+                "mockTests": 10,
+                "solveClasses": 5,
+                "practiceTests": 12
+            },
+            "Features": [
+                "Authorized GED prep center in Dhaka & Chattogram",
+                "Certified faculty trained by GED Testing Service",
+                "GED-aligned resources & mocks",
+                "Intensive care and doubt classes for weak students",
+                "One-stop service: classes, mocks, registration, final exam, credential"
+            ],
+            "TestCenters": [
+                "Kalabagan",
+                "Banani",
+                "Mirpur",
+                "Uttara Campus 1",
+                "Uttara Campus 2",
+                "Chattogram"
+            ],
+            "HowToApply": {
+                "online": "https://mentors.com.bd/education-apply-online/",
+                "phone": "09610883388"
+            }
+        },
+        "PTE": {
+            "Regular": {
+                "numberOfClasses": "22",
+                "FreeResources": [
+                    "PTE Academic Online Course (23 Lessons)",
+                    "Advanced Vocabulary (11 Lessons)",
+                    "Basics of Sentence Making (5 Lessons)",
+                    "Phonetics Made Easy (5 Lessons)"
+                ],
+                "mockTest": "5 AI-scored mock tests",
+                "courseDuration": "2 months, 3 days/week",
+                "price": {
+                    "onCampus": 12650,
+                    "online": 10000
+                },
+                "remarks": "Covers all modules with revision; includes support center access.",
+                "howToBuy": {
+                    "onCampus": "Call or visit a Mentors branch.",
+                    "online": "Visit url https://mentorslearning.com and find Online PTE under live courses."
+                },
+                "includes": {
+                    "supportCenter": "Unlimited interviews and listening practice"
+                }
+            }
+        },
+        "SpokenEnglish": {
+            "numberOfClasses": 22,
+            "courseDuration": "2 months (8 weeks), 3 days/week",
+            "classDuration": "2 hours",
+            "exams": 2,
+            "price": {
+                "onCampus": 7705,
+                "online": 4100
+            },
+            "remarks": "Enhances speaking skills through interactive activities and phonetics.",
+            "FreeResources": [
+                "Resume Writing (5 Lessons)",
+                "Email Writing (4 Lessons)",
+                "Advanced Vocabulary (11 Lessons)",
+                "Phonetics Made Easy (5 Lessons)"
+            ],
+            "includes": [
+                "2 months access to Language Club",
+                "Free membership to Mentors' Learning",
+                "Access to recorded courses and resources"
+            ],
+            "howToBuy": {
+                "onCampus": "Call or visit a Mentors branch.",
+                "online": "Visit url https://mentorslearning.com"
+            }
+        },
+        "GrammarWriting": {
+            "numberOfClasses": 22,
+            "courseDuration": "2 months (8 weeks), 3 days/week",
+            "classDuration": "2 hours",
+            "exams": 2,
+            "price": {
+                "onCampus": 6440,
+                "online": 3800
+            },
+            "remarks": "Builds grammar foundation and writing skills for academic and exam purposes.",
+            "FreeResources": [
+                "Paragraph Writing (5 Lessons)",
+                "Essay Writing (5 Lessons)",
+                "Email Writing (4 Lessons)",
+                "Basics of Sentence Making (5 Lessons)"
+            ],
+            "includes": [
+                "Access to Language Club",
+                "Support center sessions",
+                "Lecture sheets and practice materials"
+            ],
+            "howToBuy": {
+                "onCampus": "Call or visit a Mentors branch.",
+                "online": "Visit url https://mentorslearning.com"
+            }
+        },
+        "AdvancedWritingCourse": {
+            "courseDuration": "5 weeks (On-campus), 2 months (Online)",
+            "numberOfClasses": 14,
+            "classSchedule": "3 days/week",
+            "classDuration": "2 hours/class",
+            "price": {
+                "onCampus": 7000,
+                "online": 3150
+            },
+            "remarks": "Flexible learning for remote students.",
+            "courseContents": [
+                "Mastering tenses and sentence formation",
+                "Using connectors and transitions",
+                "Applying relative and participle clauses",
+                "Summary writing and paraphrasing",
+                "Formal vs. informal writing",
+                "Writing essays, letters, resumes, and applications"
+            ],
+            "targetAudience": [
+                "IELTS candidates",
+                "University students",
+                "BCS and government job aspirants",
+                "Professionals improving business writing"
+            ],
+            "howToBuy": {
+                "onCampus": "Call or visit a Mentors branch.",
+                "online": "Visit url https://mentorslearning.com"
+            }
+        }
+    },
+    "PrivateUniversityAdmission": {
+        "courseDuration": "1.5 months",
+        "classSchedule": "4 classes/week",
+        "classDuration": "1.5 hours/class",
+        "recordedClasses": {
+            "total": 52,
+            "subjects": {
+                "Physics": 10,
+                "Chemistry": 9,
+                "HigherMaths": 9,
+                "Biology": 22,
+                "Architecture": 2
+            }
+        },
+        "freeResources": [
+            "6 Pre-recorded Courses"
+        ],
+        "mockTests": {
+            "count": 10
+        },
+        "fees": {
+            "price": "Tk 3,450"
+        },
+        "remarks": "preparation for private universities like NSU, BRAC, EWU, AIUB, UIU, IUB for all courses.",
+        "howToBuy": {
+            "type": "callOrWebsite",
+            "onCampus": "Call or visit a Mentors branch.",
+            "online": "Visit url https://mentorslearning.com"
+        }
+    },
+    "JuniorEnglish": {
+        "courseDuration": "3 months",
+        "numberOfClasses": 24,
+        "classDuration": "2 hours/class",
+        "targetAudience": "Students of Class 5–9",
+        "skillsCovered": [
+            "Communication",
+            "Grammar",
+            "Vocabulary",
+            "Writing",
+            "Presentation",
+            "Active Listening",
+            "Critical Analysis",
+            "Speed Reading"
+        ],
+        "fees": {
+            "price": "4,830"
+        },
+        "remarks": "English skills development for class 5-9 students .",
+        "howToBuy": {
+            "type": "callOrWebsite",
+            "onCampus": "Call or visit a Mentors branch.",
+            "online": "Visit url https://mentorslearning.com"
+        }
+    },
+    "AbacusBrainDevelopment": {
+        "courseDuration": "3 months",
+        "numberOfClasses": 24,
+        "classDuration": "1.5 hours/class",
+        "targetAudience": "Children aiming to enhance mental arithmetic skills",
+        "fees": {
+            "price": "6,210"
+        },
+        "remarks": "Enhances mental arithmetic and cognitive skills through abacus training.",
+        "howToBuy": {
+            "type": "callOrWebsite",
+            "onCampus": "Call or visit a Mentors branch.",
+            "online": "Visit url https://mentorslearning.com"
+        }
+    },
+    "KidsEnglish": {
+        "courseDuration": "4 months",
+        "numberOfClasses": 34,
+        "classDuration": "1.5 hours/class",
+        "targetAudience": "Bangladeshi children aged 4–9 years",
+        "targetLevel": "A1–A2 CEFR (Beginner to Elementary)",
+        "features": [
+            "Thematic lessons (e.g., greetings, family, hobbies)",
+            "Interactive activities: games, songs, storytelling, crafts",
+            "Visual aids: colorful illustrations, flashcards",
+            "Cultural elements of Bangladesh",
+            "Regular reviews and assessments"
+        ],
+        "fees": {
+            "onCampus": "18,400",
+            "price": "30% discount available"
+        },
+        "remarks": "foundational skills development for kids of 4-9 years of age",
+        "howToBuy": {
+            "type": "callOrWebsite",
+            "onCampus": "Call or visit a Mentors branch.",
+            "online": "Visit url https://mentorslearning.com"
+        }
+    },
+    "packages": {
+        "offeredBundles": {
+            "ieltsBasicPackage": {
+                "includedCourses": [
+                    "Online IELTS Regular",
+                    "Online Spoken English & Phonetics",
+                    "Online foundation grammar and writing"
+                ],
+                "price": {
+                    "online": 12000
+                }
+            },
+            "juniorComboOffer": {
+                "includedCourses": [
+                    "Junior English Allrounder Online",
+                    "Abacus Brain Development"
+                ],
+                "price": {
+                    "online": 8100
+                }
+            },
+            "mentalMathCompletePackage": {
+                "includedCourses": [
+                    "Abacus Brain Development",
+                    "Abacus Brain Development Level-2",
+                    "Abacus Brain Development Level-3",
+                    "Abacus Brain Development Level-4"
+                ],
+                "price": {
+                    "onCampus": 15500
+                }
+            }
+        },
+        "howToBuy": {
+            "type": "callOrWebsite",
+            "onCampus": "Call or visit a Mentors branch.",
+            "online": "Visit url https://mentorslearning.com"
+        }
+    },
+    "branches": {
+        "Kalabagan": {
+            "location": "166/1 Mirpur Road, Kalabagan, Dhaka-1205",
+            "phone": "09610883388",
+            "email": "info@mentors.com.bd"
+        },
+        "Banani": {
+            "location": "Taneem Square (1st Fl), 158/E Kamal Ataturk Avenue, Banani, Dhaka-1213",
+            "phone": "09610883388",
+            "email": "info@mentors.com.bd"
+        },
+        "Mouchak": {
+            "location": "128/2 New Circular Road (West Side of Mouchak Market), Mouchak, Dhaka-1219",
+            "phone": "09610883388",
+            "email": "info@mentors.com.bd"
+        },
+        "Mirpur": {
+            "location": "House 14, Main Road Section 7 (Beside Mirpur 11 Central Mosque), Pallabi, Mirpur, Dhaka",
+            "phone": "09610883388",
+            "email": "info@mentors.com.bd"
+        },
+        "Uttara Campus 1": {
+            "location": "Level 4, Millenium Tower, House-02, Road-07, Sector-03, Uttara, Dhaka",
+            "phone": "09610883388",
+            "email": "info@mentors.com.bd"
+        },
+        "Uttara Campus 2": {
+            "location": "Level-7, Plot 17, Sonargaon Janopath, Sector-13, Uttara, Dhaka",
+            "phone": "09610883388",
+            "email": "info@mentors.com.bd"
+        },
+        "Wari": {
+            "location": "7 Folder Street (Wari Abed High School Building), Wari, Dhaka",
+            "phone": "09610883388",
+            "email": "info@mentors.com.bd"
+        },
+        "Chattogram": {
+            "location": "Mannan Bhaban, 156 Nur Ahmed Road, Jubilee Road, Chattogram, Postal Code: 4000",
+            "phone": "01713243432",
+            "email": "info@mentors.com.bd"
+        },
+        "Rajshahi": {
+            "location": "Giyas Plaza (2nd Floor), Shaheb Bazar, Zero Point, Rajshahi",
+            "phone": "01713384394",
+            "email": "info@mentors.com.bd"
+        },
+        "Moulvibazar": {
+            "location": "Court Road, Aptech Computer Education, Moulvibazar",
+            "phone": "01713384392",
+            "email": "info@mentors.com.bd"
+        },
+        "Rangpur": {
+            "location": "Joy Tower, House# 02, Road# 01, Dhap Engineer Para Near RDRS Mor, Rangpur",
+            "phone": "01713384393",
+            "email": "info@mentors.com.bd"
+        },
+        "Khulna": {
+            "location": "Milton Tower, 64 KDA Avenue, 2nd Floor (Tetul Tola Mor), Khulna",
+            "phone": "01329640872",
+            "email": "info@mentors.com.bd"
+        },
+        "Faridpur": {
+            "location": "Ashik View 3rd Floor, In front of Rainbow School, Jhiltuli, Faridpur",
+            "phone": "01329640895",
+            "email": "info@mentors.com.bd"
+        },
+        "USA": {
+            "location": "2501 Hunter Place, Suite 201 Woodbridge, VA 22192",
+            "phone": "01713243420",
+            "email": "info@mentors.com.bd"
+        },
+        "Australia": {
+            "location": "25 Soho Court, Keysborough VIC 3173, Melbourne, Australia",
+            "phone": "01713243420",
+            "email": "info@mentors.com.bd"
+        }
+    }
 }
+
