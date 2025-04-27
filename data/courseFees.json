@@ -529,6 +529,21 @@
             "phone": "01713243420",
             "email": "info@mentors.com.bd"
         }
+    },
+    "tecnicalProblemsAndSupport": {
+        "commonTechnicalIssues": [
+            "Login: Try resetting your password. If the problem persists, contact our support at 09610883388.",
+            "Payment: Use SSLCommerz or bKash. If payment fails, contact our support at 09610883388.",
+            "Course Access: Make sure you're logged in with the correct account. For any issues, call 09610883388.",
+            "How to join live class: first go to the website/app and login with your account. then go to the my Learning page you want to join and click on the live class button.",
+            "Technical Issues: For any technical issues, please contact our support team at 09610883388.",
+            "Mock Test: If you're experiencing technical issues with the mock test, please call 09610883388.",
+            "Downloading Course Certificate: login website and go myLerning page and click on the course certificate, please call 09610883388.",
+            "For all technical problems, always contact our support team at 09610883388 or visit any Branch."
+        ]
+    },
+    "batchScheduleInfo": {
+        "description": "To check our current batch schedules, please visit: https://mentors.com.bd/batch_schedule \n\n On this page, you can select your preferred branch and course to see all running batches. \n This will provide you with the most up-to-date information about available batches, schedules, and start dates."
     }
 }
 

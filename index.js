@@ -11,9 +11,12 @@ app.use(express.json());
 const chatRoute = require('./routes/chatRoutes');
 app.use('/api/chat', chatRoute);
 
+const writingRoute = require('./routes/writingRoutes');
+app.use('/api/writing', writingRoute);
+
 // Define a simple route
 app.get('/', (req, res) => {
-  res.send('ai chatbot is running!');
+  res.send('mentors chatbot is running!');
 });
 
 app.listen(PORT, () => {

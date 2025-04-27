@@ -54,7 +54,6 @@ const getCoursesContext = async () => {
 
     lines.push('\n');
   }
-  console.log(lines);
 
   return lines.join('\n');
 };
