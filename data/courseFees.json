@@ -340,17 +340,17 @@
         "mockTests": {
             "count": 10
         },
-        "fees": {
-            "price": "Tk 3,450"
+        "price": {
+            "online": 3450
         },
-        "remarks": "preparation for private universities like NSU, BRAC, EWU, AIUB, UIU, IUB for all courses.",
+        "remarks": "It is only online course. preparation for private universities like NSU, BRAC, EWU, AIUB, UIU, IUB for all courses.",
         "howToBuy": {
             "type": "callOrWebsite",
             "onCampus": "Call or visit a Mentors branch.",
             "online": "Visit url https://mentorslearning.com"
         }
     },
-    "JuniorEnglish": {
+    "JuniorEnglishAllrounderOnline": {
         "courseDuration": "3 months",
         "numberOfClasses": 24,
         "classDuration": "2 hours/class",
@@ -365,25 +365,25 @@
             "Critical Analysis",
             "Speed Reading"
         ],
-        "fees": {
-            "price": "4,830"
+        "price": {
+            "online": 4830
         },
-        "remarks": "English skills development for class 5-9 students .",
+        "remarks": "English skills development for class 5-9 students. It is only online course.",
         "howToBuy": {
             "type": "callOrWebsite",
             "onCampus": "Call or visit a Mentors branch.",
-            "online": "Visit url https://mentorslearning.com"
+            "online": "Visit url https://mentorslearning.com and find Junior English under live courses."
         }
     },
-    "AbacusBrainDevelopment": {
+    "AbacusBrainDevelopmentOnline": {
         "courseDuration": "3 months",
         "numberOfClasses": 24,
         "classDuration": "1.5 hours/class",
         "targetAudience": "Children aiming to enhance mental arithmetic skills",
-        "fees": {
-            "price": "6,210"
+        "price": {
+            "online": 6210
         },
-        "remarks": "Enhances mental arithmetic and cognitive skills through abacus training.",
+        "remarks": "Enhances mental arithmetic and cognitive skills through abacus training. It is only online course.",
         "howToBuy": {
             "type": "callOrWebsite",
             "onCampus": "Call or visit a Mentors branch.",
@@ -403,15 +403,14 @@
             "Cultural elements of Bangladesh",
             "Regular reviews and assessments"
         ],
-        "fees": {
-            "onCampus": "18,400",
-            "price": "30% discount available"
+        "price": {
+            "onCampus": 18400,
+            "remarks": "30% discount available"
         },
-        "remarks": "foundational skills development for kids of 4-9 years of age",
+        "remarks": "foundational skills development for kids of 4-9 years of age. It is only on campus course.",
         "howToBuy": {
             "type": "callOrWebsite",
-            "onCampus": "Call or visit a Mentors branch.",
-            "online": "Visit url https://mentorslearning.com"
+            "onCampus": "Call or visit a Mentors branch."
         }
     },
     "packages": {
@@ -537,13 +536,13 @@
             "Course Access: Make sure you're logged in with the correct account. For any issues, call 09610883388.",
             "How to join live class: first go to the website/app and login with your account. then go to the my Learning page you want to join and click on the live class button.",
             "Technical Issues: For any technical issues, please contact our support team at 09610883388.",
-            "Mock Test: If you're experiencing technical issues with the mock test, please call 09610883388.",
+            "Mock Test schedules: If you're experiencing technical issues with the mock test schedules, please call 09610883388.",
             "Downloading Course Certificate: login website and go myLerning page and click on the course certificate, please call 09610883388.",
             "For all technical problems, always contact our support team at 09610883388 or visit any Branch."
         ]
     },
     "batchScheduleInfo": {
-        "description": "To check our current batch schedules, please visit: https://mentors.com.bd/batch_schedule \n\n On this page, you can select your preferred branch and course to see all running batches. \n This will provide you with the most up-to-date information about available batches, schedules, and start dates."
+        "description": "To check our current batch schedules, please visit url: https://mentors.com.bd/batch_schedule On this page, you can select your preferred branch and course to see all running batches. \n This will provide you with the most up-to-date information about available batches, schedules, and start dates."
     }
 }
 
