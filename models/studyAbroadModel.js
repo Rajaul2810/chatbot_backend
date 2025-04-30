@@ -21,14 +21,20 @@ const getStudyAbroadContext = async () => {
     ## Online Consultation
     ${mentorsStudyAbroad.onlineConsultation.description}
     Zoom Link: ${mentorsStudyAbroad.onlineConsultation.zoomLink}
+    Note: ${mentorsStudyAbroad.onlineConsultation.remarks}
     
     ## Contact Information
     Email: ${mentorsStudyAbroad.contact.email}
     Phone: ${mentorsStudyAbroad.contact.phone}
     Website: ${mentorsStudyAbroad.contact.website}
+    Offices: ${mentorsStudyAbroad.contact.offices.join(', ')}
     
     ## Our Branches
-    ${Object.entries(mentorsStudyAbroad.branches).map(([branch, info]) => `- ${branch}: ${info.location}`).join('\n')}
+    ${Object.entries(mentorsStudyAbroad.branches).map(([branch, info]) => {
+        let branchInfo = `- ${branch}: ${info.location}`;
+        if (info.phone) branchInfo += `, Phone: ${info.phone}`;
+        return branchInfo;
+    }).join('\n')}
     
     ${mentorsStudyAbroad.branchesRemarks}
     
