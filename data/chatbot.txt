@@ -1,0 +1,235 @@
+"use client";
+import axios from 'axios';
+import Image from 'next/image';
+import React, { useState, useEffect, useRef } from 'react';
+import { FaPaperPlane, FaRobot, FaUser } from 'react-icons/fa';
+import { IoMdArrowBack, IoMdClose } from 'react-icons/io';
+
+function Chatbot() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    { text: "Hello!. I'm the Mentors' AI Assistant. I will help you with your queries.", sender: "Mentors" }
+  ]);
+  const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [conversationStarted, setConversationStarted] = useState(false);
+  const [category, setCategory] = useState("Course & Mock Info");
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const API = "https://chatbotbackend.mentorslearning.com/api/chat";
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      (messagesEndRef.current as HTMLElement).scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (isOpen && isMobile) {
+        const viewportHeight = window.innerHeight;
+        const chatContainer = document.getElementById('chat-container');
+        if (chatContainer) {
+          chatContainer.style.height = `${viewportHeight - 20}px`;
+        }
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isOpen, isMobile]);
+
+  const formatMessageWithLinks = (text: string) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const parts = text.split(urlRegex);
+    return parts.map((part, index) => {
+      if (part.match(urlRegex)) {
+        let cleanURL = part;
+        let trailing = "";
+        while (cleanURL.endsWith(')') || cleanURL.endsWith('.') || cleanURL.endsWith(',')) {
+          trailing = cleanURL.slice(-1) + trailing;
+          cleanURL = cleanURL.slice(0, -1);
+        }
+        return (
+          <React.Fragment key={index}>
+            <a 
+              href={cleanURL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="tw-text-blue-600 dark:tw-text-blue-400 tw-underline tw-break-words"
+            >
+              {cleanURL}
+            </a>
+            {trailing}
+          </React.Fragment>
+        );
+      } else {
+        return <span key={index}>{part}</span>;
+      }
+    });
+  };
+
+  const sendMessageToAPI = async (message: string) => {
+    setIsLoading(true);
+    try {
+      const response = await axios.post(API, {
+        message: message,
+        category: "Course & Mock Info"
+      });
+      setMessages(prev => [...prev, { text: response.data.response, sender: "Mentors" }]);
+    } catch (error) {
+      console.log(error);
+      setMessages(prev => [...prev, { text: "Sorry, I couldn't process your request. Please try again.", sender: "Mentors" }]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSendMessage = () => {
+    if (input.trim() === "") return;
+    setMessages([...messages, { text: input, sender: "user" }]);
+    const currentInput = input;
+    setInput("");
+    sendMessageToAPI(currentInput);
+  };
+
+  const handleCategorySelect = (selectedCategory: string) => {
+    setCategory(selectedCategory);
+    setMessages(prev => [...prev, { 
+      text: "How can I assist you today? I can help you with course information, mock tests, and any other queries you may have.", 
+      sender: "Mentors" 
+    }]);
+    setConversationStarted(true);
+  };
+
+  const toggleChat = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleBackButton = () => {
+    setConversationStarted(false);
+    setCategory("");
+    setMessages([
+      { text: "Hello!. I'm the Mentors' AI Assistant. I will help you with your queries.", sender: "Mentors" }
+    ]);
+  };
+
+  return (
+    <div className={`${isOpen && isMobile ? 'tw-fixed tw-inset-0 tw-z-50' : 'tw-fixed tw-bottom-5 tw-right-5 tw-z-50'}`}>
+      {!isOpen && (
+        <button onClick={toggleChat}>
+          <Image src="/mentorsAi.gif" alt="Chatbot" width={50} height={50} className="tw-rounded-full tw-border-2 tw-border-white" />
+        </button>
+      )}
+
+      {isOpen && (
+        <div 
+          id="chat-container"
+          className={`tw-bg-white dark:tw-bg-gray-800 tw-flex tw-flex-col tw-border tw-border-gray-200 dark:tw-border-gray-700 ${
+            isMobile 
+              ? 'tw-h-full tw-w-full tw-rounded-none' 
+              : 'tw-w-[320px] sm:tw-w-[360px] md:tw-w-[400px] tw-h-[400px] md:tw-h-[500px] tw-rounded-lg tw-shadow-xl'
+          }`}
+        >
+          <div className="tw-bg-blue-600 tw-text-white tw-p-3 tw-flex tw-justify-between tw-items-center tw-rounded-t-lg">
+            <button onClick={handleBackButton} className="tw-text-white hover:tw-bg-blue-700 tw-rounded-full tw-p-1">
+              <IoMdArrowBack className="tw-text-lg" />
+            </button>
+            <div className="tw-flex tw-items-center tw-gap-2">
+              <FaRobot className="tw-text-lg" />
+              <h3 className="tw-font-medium tw-text-sm">Mentors&apos; AI Assistant</h3>
+            </div>
+            <button onClick={toggleChat} className="tw-text-white hover:tw-bg-blue-700 tw-rounded-full tw-p-1">
+              <IoMdClose className="tw-text-lg" />
+            </button>
+          </div>
+
+          <div className="tw-flex-1 tw-p-3 tw-flex tw-flex-col tw-gap-3 tw-overflow-y-auto">
+            {messages.map((message, index) => (
+              <div key={index} className={`tw-flex ${message.sender === "user" ? "tw-justify-end" : "tw-justify-start"}`}>
+                <div className={`tw-flex tw-items-start tw-gap-2 tw-max-w-[80%] ${message.sender === "user" ? "tw-flex-row-reverse" : ""}`}>
+                  <div className={`tw-flex-shrink-0 tw-p-1 tw-rounded-full ${message.sender === "user" ? "tw-bg-blue-100 dark:tw-bg-blue-900" : "tw-bg-gray-100 dark:tw-bg-gray-700"}`}>
+                    {message.sender === "user" ? 
+                      <FaUser className="tw-text-blue-600 dark:tw-text-blue-400 tw-text-sm" /> : 
+                      <FaRobot className="tw-text-gray-600 dark:tw-text-gray-400 tw-text-sm" />
+                    }
+                  </div>
+                  <div className={`tw-p-2.5 tw-rounded-lg tw-text-sm tw-break-words ${
+                    message.sender === "user" 
+                      ? "tw-bg-blue-600 tw-text-white tw-rounded-tr-none" 
+                      : "tw-bg-gray-200 dark:tw-bg-gray-700 tw-text-gray-800 dark:tw-text-gray-200 tw-rounded-tl-none"
+                  }`}>
+                    {formatMessageWithLinks(message.text)}
+                  </div>
+                </div>
+              </div>
+            ))}
+            {isLoading && (
+              <div className="tw-flex tw-justify-start">
+                <div className="tw-flex tw-items-start tw-gap-2 tw-max-w-[80%]">
+                  <div className="tw-flex-shrink-0 tw-p-1 tw-rounded-full tw-bg-gray-100 dark:tw-bg-gray-700">
+                    <FaRobot className="tw-text-gray-600 dark:tw-text-gray-400 tw-text-sm" />
+                  </div>
+                  <div className="tw-p-2.5 tw-rounded-lg tw-bg-gray-200 dark:tw-bg-gray-700 tw-text-gray-800 dark:tw-text-gray-200 tw-rounded-tl-none">
+                    <div className="tw-flex tw-space-x-1">
+                      <div className="tw-w-2 tw-h-2 tw-bg-gray-500 dark:tw-bg-gray-400 tw-rounded-full tw-animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                      <div className="tw-w-2 tw-h-2 tw-bg-gray-500 dark:tw-bg-gray-400 tw-rounded-full tw-animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                      <div className="tw-w-2 tw-h-2 tw-bg-gray-500 dark:tw-bg-gray-400 tw-rounded-full tw-animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {!conversationStarted && (
+            <div className="tw-p-3 tw-border-t tw-border-gray-200 dark:tw-border-gray-700 tw-flex tw-flex-col tw-gap-2">
+              <button
+                onClick={() => handleCategorySelect(category)}
+                className="tw-bg-blue-100 hover:tw-bg-blue-200 dark:tw-bg-blue-800 dark:hover:tw-bg-blue-700 tw-text-blue-800 dark:tw-text-blue-200 tw-text-sm tw-rounded-full tw-px-3 tw-py-2 tw-transition-colors tw-w-full"
+                disabled={isLoading}
+              >
+                Get Started
+              </button>
+            </div>
+          )}
+
+          {conversationStarted && (
+            <div className="tw-border-t tw-border-gray-200 dark:tw-border-gray-700 tw-p-3 tw-sticky tw-bottom-0 tw-bg-white dark:tw-bg-gray-800">
+              <div className="tw-flex tw-items-center tw-gap-2">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                  placeholder="Type your message..."
+                  className="tw-flex-1 tw-p-2 tw-text-sm tw-border tw-border-gray-300 dark:tw-border-gray-600 tw-rounded-full focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-blue-500 dark:tw-bg-gray-700 dark:tw-text-white"
+                  disabled={isLoading}
+                />
+                <button
+                  onClick={handleSendMessage}
+                  className={`tw-bg-blue-600 hover:tw-bg-blue-700 tw-text-white tw-rounded-full tw-p-2 tw-transition-colors ${isLoading ? 'tw-opacity-50 tw-cursor-not-allowed' : ''}`}
+                  disabled={isLoading}
+                >
+                  <FaPaperPlane className="tw-text-sm" />
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default Chatbot;

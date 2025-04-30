@@ -7,6 +7,7 @@ const getTechContext = async () => {
   - How to join live class: first go to the website/app and login with your account. then go to the my Learning page you want to join and click on the live class button.
   - Technical Issues: For any technical issues, please contact our support team at 09610883388.
   - Mock Test: If you're experiencing technical issues with the mock test, please call 09610883388.
+  - Downloading Course Certificate: login website and go myLerning page and click on the course certificate, please call 09610883388.
   - For all technical problems, always contact our support team at 09610883388 or visit any Branch.
     `;
   };

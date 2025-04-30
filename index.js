@@ -16,7 +16,7 @@ app.use('/api/writing', writingRoute);
 
 // Define a simple route
 app.get('/', (req, res) => {
-  res.send('mentors chatbot is running!');
+  res.send('mentors & study abroad chatbot is running!');
 });
 
 app.listen(PORT, () => {

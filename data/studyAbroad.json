@@ -1,0 +1,109 @@
+{
+    "mentorsStudyAbroad": {
+      "overview": "Mentors Study Abroad helps students pursue higher education globally with expert guidance on university selection, admission, visa processing, and scholarships.",
+      "countries": [
+        {
+          "name": "USA",
+          "link": "https://mentors.com.bd/studyabroad/usa"
+        },
+        {
+          "name": "UK",
+          "link": "https://mentors.com.bd/studyabroad/uk"
+        },
+        {
+          "name": "Canada",
+          "link": "https://mentors.com.bd/studyabroad/canada"
+        },
+        {
+          "name": "Australia",
+          "link": "https://mentors.com.bd/studyabroad/australia"
+        },
+        {
+          "name": "Malaysia",
+          "link": "https://mentors.com.bd/studyabroad/malaysia"
+        },
+        {
+          "name": "Sweden",
+          "link": "https://mentors.com.bd/studyabroad/sweden"
+        },
+        {
+          "name": "Denmark",
+          "link": "https://mentors.com.bd/studyabroad/denmark"
+        },
+        {
+          "name": "Ireland",
+          "link": "https://mentors.com.bd/studyabroad/ireland"
+        },
+        {
+          "name": "New Zealand",
+          "link": "https://mentors.com.bd/studyabroad/newzealand"
+        },
+        {
+          "name": "Japan",
+          "link": "https://mentors.com.bd/studyabroad/japan"
+        }
+      ],
+      "remarks": "We are not providing any services for the countries mentioned above. We are only providing information about the countries and their universities. above country link for more information",
+      "services": {
+        "universitySelection": "Personalized university matching based on your profile and career goals.",
+        "admissionAssistance": "Full support with application preparation, SOPs, and documentation.",
+        "visaProcessing": "Step-by-step visa application support including interview prep.",
+        "scholarshipGuidance": "Information on need-based, merit-based, and country-specific scholarships.",
+        "preDepartureBriefing": "Cultural adaptation, travel prep, and accommodation assistance.",
+        "fee": "Our all services are free of cost. We are not charging any fee from the students.",
+        "applyOnline": "https://mentors.com.bd/apply_online"
+      },
+      "onlineConsultation": {
+        "description": "We are providing online consultation for the students. You can contact us through our website or our social media platforms.",
+        "zoomLink": "https://zoom.us/j/5599861660?pwd=ehrOdYb8GyNR3IET3fraYkK2La3iIh.1",
+        "remarks": "Please join the zoom meeting if you need to consult with us. We will provide you the best possible solution for your study abroad journey."
+      },
+      "contact": {
+        "email": "info@mentors.com.bd",
+        "phone": "09610883388",
+        "website": "https://mentors.com.bd/studyabroad",
+        "offices": ["Dhaka","Kalabagan", "Banani", "Mouchak", "Mirpur", "Uttara Campus 1", "Uttara Campus 2", "Wari"]
+      },
+      "branches": {
+        "Kalabagan": {
+            "location": "166/1 Mirpur Road, Kalabagan, Dhaka-1205",
+            "phone": "09610883388"
+        },
+        "Banani": {
+            "location": "Taneem Square (1st Fl), 158/E Kamal Ataturk Avenue, Banani, Dhaka-1213",
+            "phone": "09610883388"
+        },
+        "Mouchak": {
+            "location": "128/2 New Circular Road (West Side of Mouchak Market), Mouchak, Dhaka-1219",
+            "phone": "01713243415"
+        },
+        "Mirpur": {
+            "location": "House 14, Main Road Section 7 (Beside Mirpur 11 Central Mosque), Pallabi, Mirpur, Dhaka",
+            "phone": "01713243437, 01701215957"
+        },
+        "Uttara Campus 1": {
+            "location": "Level 4, Millenium Tower, House-02, Road-07, Sector-03, Uttara, Dhaka",
+            "phone": " 01713243438, 0171384398"
+        },
+        "Uttara Campus 2": {
+            "location": "Level-7, Plot 17, Sonargaon Janopath, Sector-13, Uttara, Dhaka",
+            "phone": "48959796, 01713243420"
+        },
+        "Wari": {
+            "location": "7 Folder Street (Wari Abed High School Building), Wari, Dhaka",
+            "phone": "01713243415"
+        },
+        "USA": {
+            "location": "2501 Hunter Place, Suite 201 Woodbridge, VA 22192"
+        },
+        "Australia": {
+            "location": "25 Soho Court, Keysborough VIC 3173, Melbourne, Australia"
+        }
+      },
+      "branchesRemarks": "We provide services in the branches mentioned above. You can visit the branch to get the services about the countries and their universities.",
+      "successStories": {
+        "description": "130+ Universities Affiliated, 800+ Successful Visas, 100+ Cities Affiliated, 7+ Years of Experience"
+      }
+    }
+  }
+  

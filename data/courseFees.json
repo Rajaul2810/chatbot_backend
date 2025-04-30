@@ -211,7 +211,12 @@
             "HowToApply": {
                 "online": "https://mentors.com.bd/education-apply-online/",
                 "phone": "09610883388"
-            }
+            },
+            "howToBuy": {
+                "type": "callOrWebsite",
+                "onCampus": "Call or visit a Mentors branch."
+            },
+            "remarks": "It is only on campus course and if you wanto to buy this course first you will be permitted by mentors permission."
         },
         "PTE": {
             "Regular": {

@@ -66,14 +66,10 @@
             "email": "info@mentors.com.bd"
         },
         "USA": {
-            "location": "2501 Hunter Place, Suite 201 Woodbridge, VA 22192",
-            "phone": "01713243420",
-            "email": "info@mentors.com.bd"
+            "location": "2501 Hunter Place, Suite 201 Woodbridge, VA 22192"
         },
         "Australia": {
-            "location": "25 Soho Court, Keysborough VIC 3173, Melbourne, Australia",
-            "phone": "01713243420",
-            "email": "info@mentors.com.bd"
+            "location": "25 Soho Court, Keysborough VIC 3173, Melbourne, Australia"
         }
     }
 }
