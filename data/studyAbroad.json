@@ -43,15 +43,20 @@
           "link": "https://mentors.com.bd/studyabroad/japan"
         }
       ],
-      "remarks": "We are not providing any services for the countries mentioned above. We are only providing information about the countries and their universities. above country link for more information",
+      "remarks": "We are providing services for the countries mentioned above. We are providing study abroad all information about the countries and their universities. above country link for more information",
       "services": {
         "universitySelection": "Personalized university matching based on your profile and career goals.",
         "admissionAssistance": "Full support with application preparation, SOPs, and documentation.",
         "visaProcessing": "Step-by-step visa application support including interview prep.",
         "scholarshipGuidance": "Information on need-based, merit-based, and country-specific scholarships.",
         "preDepartureBriefing": "Cultural adaptation, travel prep, and accommodation assistance.",
+        "careerGuidance": "Career guidance and job placement assistance after graduation.",
+        "visaInterview": "Visa interview preparation and mock interviews.",   
+        "accommodation": "Accommodation assistance and guidance.",
+        "financialAssistance": "Financial assistance and guidance.",
         "fee": "Our all services are free of cost. We are not charging any fee from the students.",
-        "applyOnline": "https://mentors.com.bd/apply_online"
+        "applyOnline": "https://mentors.com.bd/apply_online",
+        "remarks":"Mentors Study Abroad is a agency that provides all kind of study abroad related services. "
       },
       "onlineConsultation": {
         "description": "We are providing online consultation for the students. You can contact us through our website or our social media platforms.",
