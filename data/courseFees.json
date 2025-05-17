@@ -14,8 +14,8 @@
                 "courseDuration": "3.5 months but mock valid for 1 year",
                 "classDuration": "2hours",
                 "price": {
-                    "onCampus": 12650,
-                    "online": 8400
+                    "onCampus": 13800,
+                    "online": 9500
                 },
                 "remarks": "complete IELTS guidance, preparing for studying abroad",
                 "howToBuy": {
@@ -40,8 +40,8 @@
                 "courseDuration": "1.5 months but mock valid for 1 year",
                 "classDuration": "2hours",
                 "price": {
-                    "onCampus": 8400,
-                    "online": 6000
+                    "onCampus": 9500,
+                    "online": 6700
                 },
                 "remarks": "Finished in short amount of time, suitable for students who want moderate understanding of IELTS",
                 "howToBuy": {
@@ -93,8 +93,8 @@
             },
             "BasicPackage": {
                 "price": {
-                    "onCampus": 17500,
-                    "online": 12000
+                    "onCampus": 18000,
+                    "online": 13000
                 },
                 "includes": [
                     "Grammar & Writing",
@@ -113,7 +113,7 @@
                 "courseDuration": "1.5 months, 3 days/week",
                 "price": {
                     "onCampus": 15525,
-                    "online": 10000
+                    "online": 11000
                 },
                 "remarks": "Covers all SAT sections with expert guidance.",
                 "howToBuy": {
@@ -230,7 +230,7 @@
                 "mockTest": "5 AI-scored mock tests",
                 "courseDuration": "2 months, 3 days/week",
                 "price": {
-                    "onCampus": 12650,
+                    "onCampus": 13225,
                     "online": 10000
                 },
                 "remarks": "Covers all modules with revision; includes support center access.",
@@ -249,8 +249,8 @@
             "classDuration": "2 hours",
             "exams": 2,
             "price": {
-                "onCampus": 7705,
-                "online": 4100
+                "onCampus": 8395,
+                "online": 4170
             },
             "remarks": "Enhances speaking skills through interactive activities and phonetics.",
             "FreeResources": [
@@ -275,8 +275,8 @@
             "classDuration": "2 hours",
             "exams": 2,
             "price": {
-                "onCampus": 6440,
-                "online": 3800
+                "onCampus": 7245,
+                "online": 4400
             },
             "remarks": "Builds grammar foundation and writing skills for academic and exam purposes.",
             "FreeResources": [
@@ -302,7 +302,7 @@
             "classDuration": "2 hours/class",
             "price": {
                 "onCampus": 7000,
-                "online": 3150
+                "online": 4500
             },
             "remarks": "Flexible learning for remote students.",
             "courseContents": [
@@ -346,7 +346,7 @@
             "count": 10
         },
         "price": {
-            "online": 3450
+            "online": 5000
         },
         "remarks": "It is only online course. preparation for private universities like NSU, BRAC, EWU, AIUB, UIU, IUB for all courses.",
         "howToBuy": {
@@ -371,7 +371,7 @@
             "Speed Reading"
         ],
         "price": {
-            "online": 4830
+            "online": 6900
         },
         "remarks": "English skills development for class 5-9 students. It is only online course.",
         "howToBuy": {
@@ -386,7 +386,7 @@
         "classDuration": "1.5 hours/class",
         "targetAudience": "Children aiming to enhance mental arithmetic skills",
         "price": {
-            "online": 6210
+            "online": 4000
         },
         "remarks": "Enhances mental arithmetic and cognitive skills through abacus training. It is only online course.",
         "howToBuy": {
@@ -427,7 +427,7 @@
                     "Online foundation grammar and writing"
                 ],
                 "price": {
-                    "online": 12000
+                    "online": 13000
                 }
             },
             "juniorComboOffer": {
@@ -447,7 +447,7 @@
                     "Abacus Brain Development Level-4"
                 ],
                 "price": {
-                    "onCampus": 15500
+                    "onCampus": 11200
                 }
             }
         },
@@ -456,6 +456,9 @@
             "onCampus": "Call or visit a Mentors branch.",
             "online": "Visit url https://mentorslearning.com"
         }
+    },
+    "allCourseDiscount": {
+        "remarks": "10-30% discount available online or offline. Please check with your branch and website for discount details."
     },
     "branches": {
         "Kalabagan": {
@@ -532,6 +535,9 @@
             "location": "25 Soho Court, Keysborough VIC 3173, Melbourne, Australia",
             "phone": "01713243420",
             "email": "info@mentors.com.bd"
+        },
+        "ieltsExamCenter": {
+            "remarks": "Mentors' All Dhaka branch is the IELTS exam center available. You can take your IELTS exam there."
         }
     },
     "tecnicalProblemsAndSupport": {

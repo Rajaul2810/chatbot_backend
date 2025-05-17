@@ -6,7 +6,7 @@ const branchModel = require('../models/branchModel');
 const studyAbroadModel = require('../models/studyAbroadModel');
 
 const generateChatResponse = async (userInput, category) => {
-  console.log('category backend', category);
+  //console.log('category backend', category);
 
   let context = '';
 
@@ -27,7 +27,7 @@ const generateChatResponse = async (userInput, category) => {
       context = 'No relevant data found.';
   }
 
-  console.log('context', context);
+  //console.log('context', context);
   
   if (category !== 'Study Abroad Info') {
     systemPrompt = `
@@ -162,7 +162,7 @@ Use ${category} and ${context} if provided to customize replies.
   }
 
   const completion = await openai.chat.completions.create({
-    model: 'gpt-4.1', //gpt-4o-mini //gpt-4o //gpt-3.5-turbo
+    model: 'gpt-4.1-mini', //gpt-4o-mini //gpt-4o //gpt-3.5-turbo
     messages: [
       { role: 'system', content: systemPrompt },
       { role: 'user', content: userInput }

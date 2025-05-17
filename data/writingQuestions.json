@@ -1,103 +1,70 @@
-[
+{
+  "levels": [
     {
-      "id": 1,
-      "taskType": "Task 2",
-      "question": "Some people believe that unpaid community service should be a compulsory part of high school programs. Do you agree or disagree?"
+      "level": "A1",
+      "name": "Beginner",
+      "topics": [
+        { "id": "a1-1", "title": "My Family" },
+        { "id": "a1-2", "title": "My Daily Routine" },
+        { "id": "a1-3", "title": "My School" },
+        { "id": "a1-4", "title": "My Favorite Food" },
+        { "id": "a1-5", "title": "My Pet / A Pet I Like" }
+      ]
     },
     {
-      "id": 2,
-      "taskType": "Task 2",
-      "question": "Nowadays, many people choose to live alone. What are the reasons for this, and is it a positive or negative development?"
+      "level": "A2",
+      "name": "Elementary",
+      "topics": [
+        { "id": "a2-1", "title": "A Visit to the Zoo" },
+        { "id": "a2-2", "title": "My Favorite Season" },
+        { "id": "a2-3", "title": "A Short Trip I Enjoyed" },
+        { "id": "a2-4", "title": "My Dream Country" },
+        { "id": "a2-5", "title": "How I Spend My Vacation" }
+      ]
     },
     {
-      "id": 3,
-      "taskType": "Task 1",
-      "question": "The bar chart shows the percentage of adults of different age groups in the UK who used the Internet in 2003, 2006, and 2009. Summarize the information by selecting and reporting the main features, and make comparisons where relevant."
+      "level": "A3",
+      "name": "High Elementary / Pre-Intermediate",
+      "topics": [
+        { "id": "a3-1", "title": "A Festival in My Country" },
+        { "id": "a3-2", "title": "My First Day at School" },
+        { "id": "a3-3", "title": "The Importance of Cleanliness" },
+        { "id": "a3-4", "title": "What I Do in My Free Time" },
+        { "id": "a3-5", "title": "Why I Want to Learn English" }
+      ]
     },
     {
-      "id": 4,
-      "taskType": "Task 2",
-      "question": "Some people think that governments should give financial support to creative artists such as painters and musicians. Others believe that artists should be funded by alternative sources. Discuss both views and give your opinion."
+      "level": "B1",
+      "name": "Intermediate",
+      "topics": [
+        { "id": "b1-1", "title": "My Favorite Hobby" },
+        { "id": "b1-2", "title": "A Memorable Day in My Life" },
+        { "id": "b1-3", "title": "The Importance of Learning English" },
+        { "id": "b1-4", "title": "My Best Friend" },
+        { "id": "b1-5", "title": "A Place I Want to Visit" }
+      ]
     },
     {
-      "id": 5,
-      "taskType": "Task 1",
-      "question": "The table shows the proportion of different categories of families living in poverty in Australia in 1999. Summarize the information by selecting and reporting the main features, and make comparisons where relevant."
+      "level": "B2",
+      "name": "Upper-Intermediate",
+      "topics": [
+        { "id": "b2-1", "title": "The Impact of Social Media on Teenagers" },
+        { "id": "b2-2", "title": "How to Stay Healthy in a Busy Life" },
+        { "id": "b2-3", "title": "Advantages and Disadvantages of Online Classes" },
+        { "id": "b2-4", "title": "Climate Change and Its Effects" },
+        { "id": "b2-5", "title": "The Role of Technology in Our Daily Life" }
+      ]
     },
     {
-      "id": 6,
-      "taskType": "Task 2",
-      "question": "In some countries, the number of people choosing to live alone is increasing rapidly. What are the reasons behind this trend? Is it a positive or negative development?"
-    },
-    {
-      "id": 7,
-      "taskType": "Task 1",
-      "question": "The diagrams show a small local museum and its layout in 1957 and 2007. Summarize the information by selecting and reporting the main features, and make comparisons where relevant."
-    },
-    {
-      "id": 8,
-      "taskType": "Task 2",
-      "question": "Some people think that environmental problems are too big for individuals to solve. Others believe individuals can also do something to solve these problems. Discuss both views and give your opinion."
-    },
-    {
-      "id": 9,
-      "taskType": "Task 1",
-      "question": "The pie charts show the average consumption of food in the world in 2008 compared to two countries. Summarize the information by selecting and reporting the main features, and make comparisons where relevant."
-    },
-    {
-      "id": 10,
-      "taskType": "Task 2",
-      "question": "Nowadays, more people are choosing to socialize online rather than face to face. Is this a positive or negative development?"
-    },
-    {
-      "id": 11,
-      "taskType": "Task 2",
-      "question": "Some people think that governments should spend money on railways rather than roads. To what extent do you agree or disagree?"
-    },
-    {
-      "id": 12,
-      "taskType": "Task 1",
-      "question": "The graph shows the number of tourists visiting a particular Caribbean island between 2010 and 2017. Summarize the information by selecting and reporting the main features, and make comparisons where relevant."
-    },
-    {
-      "id": 13,
-      "taskType": "Task 2",
-      "question": "Many people think that mobile phones should be banned in public places like libraries, shops, and public transport. Do you agree or disagree?"
-    },
-    {
-      "id": 14,
-      "taskType": "Task 1",
-      "question": "The maps below show a village called Stokeford in 1930 and 2010. Summarize the information by selecting and reporting the main features, and make comparisons where relevant."
-    },
-    {
-      "id": 15,
-      "taskType": "Task 2",
-      "question": "Some people think that success is the best measure for intelligence, while others think intelligence can be measured in other ways. Discuss both views and give your opinion."
-    },
-    {
-      "id": 16,
-      "taskType": "Task 1",
-      "question": "The chart shows the expenditure on three categories among different age groups of residents in the UK in 2004. Summarize the information by selecting and reporting the main features, and make comparisons where relevant."
-    },
-    {
-      "id": 17,
-      "taskType": "Task 2",
-      "question": "Some people think that professional athletes make good role models for young people, while others believe they don’t. Discuss both sides and give your opinion."
-    },
-    {
-      "id": 18,
-      "taskType": "Task 1",
-      "question": "The diagram shows the process of making recycled paper. Summarize the information by selecting and reporting the main features, and make comparisons where relevant."
-    },
-    {
-      "id": 19,
-      "taskType": "Task 2",
-      "question": "In the future, it seems more difficult to live on Earth. Some people think more money should be spent on researching other planets to live on, such as Mars. To what extent do you agree or disagree?"
-    },
-    {
-      "id": 20,
-      "taskType": "Task 1",
-      "question": "The charts show how an average middle-class family in two different countries spends their monthly income. Summarize the information by selecting and reporting the main features, and make comparisons where relevant."
+      "level": "B3",
+      "name": "Advanced-Intermediate",
+      "topics": [
+        { "id": "b3-1", "title": "Is Globalization Good or Bad?" },
+        { "id": "b3-2", "title": "The Pros and Cons of Artificial Intelligence" },
+        { "id": "b3-3", "title": "Cultural Differences Between Countries" },
+        { "id": "b3-4", "title": "The Importance of Financial Literacy for Young People" },
+        { "id": "b3-5", "title": "How Can We Balance Tradition and Modernity?" }
+      ]
     }
   ]
-  
+}
