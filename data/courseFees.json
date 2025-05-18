@@ -15,7 +15,7 @@
                 "classDuration": "2hours",
                 "price": {
                     "onCampus": 13800,
-                    "online": 9500
+                    "online": 8550
                 },
                 "remarks": "complete IELTS guidance, preparing for studying abroad",
                 "howToBuy": {
@@ -41,7 +41,7 @@
                 "classDuration": "2hours",
                 "price": {
                     "onCampus": 9500,
-                    "online": 6700
+                    "online": 6030
                 },
                 "remarks": "Finished in short amount of time, suitable for students who want moderate understanding of IELTS",
                 "howToBuy": {
@@ -113,7 +113,7 @@
                 "courseDuration": "1.5 months, 3 days/week",
                 "price": {
                     "onCampus": 15525,
-                    "online": 11000
+                    "online": 8800
                 },
                 "remarks": "Covers all SAT sections with expert guidance.",
                 "howToBuy": {
@@ -231,7 +231,7 @@
                 "courseDuration": "2 months, 3 days/week",
                 "price": {
                     "onCampus": 13225,
-                    "online": 10000
+                    "online": 7000
                 },
                 "remarks": "Covers all modules with revision; includes support center access.",
                 "howToBuy": {
@@ -250,7 +250,7 @@
             "exams": 2,
             "price": {
                 "onCampus": 8395,
-                "online": 4170
+                "online": 4230
             },
             "remarks": "Enhances speaking skills through interactive activities and phonetics.",
             "FreeResources": [
@@ -276,7 +276,7 @@
             "exams": 2,
             "price": {
                 "onCampus": 7245,
-                "online": 4400
+                "online": 3960
             },
             "remarks": "Builds grammar foundation and writing skills for academic and exam purposes.",
             "FreeResources": [
@@ -296,13 +296,13 @@
             }
         },
         "AdvancedWritingCourse": {
-            "courseDuration": "5 weeks (On-campus), 2 months (Online)",
+            "courseDuration": "5 weeks (On-campus), 1.1 months (Online)",
             "numberOfClasses": 14,
             "classSchedule": "3 days/week",
             "classDuration": "2 hours/class",
             "price": {
                 "onCampus": 7000,
-                "online": 4500
+                "online": 3375
             },
             "remarks": "Flexible learning for remote students.",
             "courseContents": [
@@ -346,7 +346,7 @@
             "count": 10
         },
         "price": {
-            "online": 5000
+            "online": 4025
         },
         "remarks": "It is only online course. preparation for private universities like NSU, BRAC, EWU, AIUB, UIU, IUB for all courses.",
         "howToBuy": {
@@ -371,7 +371,7 @@
             "Speed Reading"
         ],
         "price": {
-            "online": 6900
+            "online": 4140
         },
         "remarks": "English skills development for class 5-9 students. It is only online course.",
         "howToBuy": {
@@ -416,6 +416,34 @@
         "howToBuy": {
             "type": "callOrWebsite",
             "onCampus": "Call or visit a Mentors branch."
+        }
+    },
+    "CreativeContentCreationBasic": {
+        "courseDuration": "1.5 months",
+        "numberOfClasses": 12,
+        "classDuration": "1.5 hours/class",
+        "price": {
+            "online": 3500
+        },
+        "remarks": "It is only online course.",
+        "howToBuy": {
+            "type": "callOrWebsite",
+            "onCampus": "Call or visit a Mentors branch.",
+            "online": "Visit url https://mentorslearning.com"   
+        }
+    },
+    "AfterSSCEnglishPlusICT": {
+        "courseDuration": "2 months",
+        "numberOfClasses": 24,
+        "classDuration": "1.5 hours/class",
+        "price": {
+            "onCampus": 7705,
+            "online": 4600
+        },
+        "howToBuy": {
+            "type": "callOrWebsite",
+            "onCampus": "Call or visit a Mentors branch.",
+            "online": "Visit url https://mentorslearning.com"
         }
     },
     "packages": {
