@@ -36,6 +36,21 @@ const SubmissionSchema = new mongoose.Schema({
   AiGenerateWriting: {
     type: String,
   },
+  ReWriteCorrectVersion: {
+    type: String,
+  },
+  ReWriteImprovementVersion: {
+    type: String,
+  },
+  TotalGrammerError: {
+    type: String,
+  },
+  TotalVocabularyError: {
+    type: String,
+  },
+  TotalSentenceError: {
+    type: String,
+  },
   score: {
     taskAchievement: { type: Number, min: 0, max: 9 },
     coherenceAndCohesion: { type: Number, min: 0, max: 9 },

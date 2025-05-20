@@ -7,6 +7,11 @@ const generateWritingResponse = async (userInput, question) => {
 - AiMotivation: A motivational paragraph for the student to improve their writing in bangla choto sentence cheer up sentence jodi student ai diye lekiye take tahole take domok dite hobe.
 - AiSuggestions: A list of suggestions for the student to improve their writing in bangla choto sentence.
 
+- TotalGrammerError: Total grammer error in the student's writing.
+- TotalVocabularyError: Total vocabulary error in the student's writing.
+- TotalSentenceError: Total sentence error in the student's writing.
+- ReWriteCorrectVersion: rewrite the student's writing with correct version.
+- ReWriteImprovementVersion: rewrite the student's writing with improvement version.
 
 Evaluate the student's writing based on IELTS Band Descriptors:
 - Task Achievement (TA)
@@ -16,10 +21,7 @@ Evaluate the student's writing based on IELTS Band Descriptors:
 
 For each criterion, provide:
 - Score (decimal format, between 1.0 and 9.0)
-- Strengths (list of strong points)
-- Improvements (list of suggestions)
-- Examples (if needed, for vocabulary or cohesion words)
-- Short paragraph feedback
+
 
  
 
@@ -28,30 +30,22 @@ Output the entire response ONLY in the following strict JSON format:
  "AiGenerateWriting": "",
   "AiMotivation": "",
   "AiSuggestions": "",
+  "TotalGrammerError": "",
+  "TotalVocabularyError": "",
+  "TotalSentenceError": "",
+  "ReWriteCorrectVersion": "",
+  "ReWriteImprovementVersion": "",
   "taskAchievement": {
     "score": 0,
-    "strengths": [],
-    "improvements": [],
-    "feedback": ""
   },
   "coherenceAndCohesion": {
     "score": 0,
-    "strengths": [],
-    "examples": [],
-    "feedback": ""
   },
   "lexicalResource": {
     "score": 0,
-    "strengths": [],
-    "examples": [],
-    "improvements": [],
-    "feedback": ""
   },
   "grammaticalRangeAndAccuracy": {
     "score": 0,
-    "strengths": [],
-    "improvements": [],
-    "feedback": ""
   },
   "overallBandScore": 0,
   "generalFeedback": ""

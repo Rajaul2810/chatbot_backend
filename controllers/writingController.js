@@ -15,6 +15,8 @@ const getNextWritingQuestion = async (userId) => {
     const questionsPath = path.join(__dirname, '..', 'data', 'writingQuestions.json');
     const questionsData = fs.readFileSync(questionsPath, 'utf-8');
     const questionsJson = JSON.parse(questionsData);
+
+    //console.log(questionsJson);
     
     // Find current level using name instead of level code
     const currentLevel = questionsJson.levels.find(l => l.name === user.level);
@@ -22,12 +24,14 @@ const getNextWritingQuestion = async (userId) => {
       throw new Error('Invalid level');
     }
 
+    //console.log(currentLevel);
+
     // Get current question
     const currentQuestion = currentLevel.topics[user.currentQuestionIndex];
     if (!currentQuestion) {
       throw new Error('No more questions in current level');
     }
-
+    //console.log(currentQuestion);
     return {
       question: currentQuestion,
       level: user.level,
@@ -65,6 +69,11 @@ const handleWriting = async (req, res) => {
       AiMotivation: evaluation.AiMotivation,
       AiSuggestions: evaluation.AiSuggestions,
       AiGenerateWriting: evaluation.AiGenerateWriting,
+      ReWriteCorrectVersion: evaluation.ReWriteCorrectVersion,
+      ReWriteImprovementVersion: evaluation.ReWriteImprovementVersion,
+      TotalGrammerError: evaluation.TotalGrammerError,
+      TotalVocabularyError: evaluation.TotalVocabularyError,
+      TotalSentenceError: evaluation.TotalSentenceError,
       score: {
         taskAchievement: evaluation.taskAchievement?.score,
         coherenceAndCohesion: evaluation.coherenceAndCohesion?.score,
@@ -95,30 +104,30 @@ const handleWriting = async (req, res) => {
         score: overallScore,
         completedAt: new Date()
       });
+    }
 
-      // Move to next question
-      const questionsPath = path.join(__dirname, '..', 'data', 'writingQuestions.json');
-      const questionsData = fs.readFileSync(questionsPath, 'utf-8');
-      const questionsJson = JSON.parse(questionsData);
-      
-      const currentLevel = questionsJson.levels.find(l => l.name === user.level);
-      
-      // If completed all questions in current level, move to next level
-      if (user.currentQuestionIndex + 1 >= currentLevel.topics.length) {
-        const currentLevelIndex = questionsJson.levels.findIndex(l => l.name === user.level);
-        if (currentLevelIndex < questionsJson.levels.length - 1) {
-          user.level = questionsJson.levels[currentLevelIndex + 1].name;
-          user.currentQuestionIndex = 0;
-        }
-      } else {
-        user.currentQuestionIndex += 1;
+    // Always move to next question
+    const questionsPath = path.join(__dirname, '..', 'data', 'writingQuestions.json');
+    const questionsData = fs.readFileSync(questionsPath, 'utf-8');
+    const questionsJson = JSON.parse(questionsData);
+    
+    const currentLevel = questionsJson.levels.find(l => l.name === user.level);
+    
+    // If completed all questions in current level, move to next level
+    if (user.currentQuestionIndex + 1 >= currentLevel.topics.length) {
+      const currentLevelIndex = questionsJson.levels.findIndex(l => l.name === user.level);
+      if (currentLevelIndex < questionsJson.levels.length - 1) {
+        user.level = questionsJson.levels[currentLevelIndex + 1].name;
+        user.currentQuestionIndex = 0;
       }
+    } else {
+      user.currentQuestionIndex += 1;
     }
 
     // Update user stats
     user.totalSubmissions += 1;
     user.lastSubmissionDate = new Date();
-    user.averageScore = (user.averageScore * (user.totalSubmissions - 1) + overallScore) / user.totalSubmissions;
+    user.averageScore = Math.round(((user.averageScore * (user.totalSubmissions - 1) + overallScore) / user.totalSubmissions) * 100) / 100;
     
     await user.save();
 
