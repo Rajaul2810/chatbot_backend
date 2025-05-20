@@ -6,6 +6,10 @@ const SubmissionSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
+  questionId: {
+    type: String,
+    required: true
+  },
   taskType: { 
     type: String, 
     enum: ['Task 1', 'Task 2'], 

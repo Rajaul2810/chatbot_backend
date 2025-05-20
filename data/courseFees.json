@@ -425,6 +425,11 @@
         "price": {
             "online": 3500
         },
+        "includes": {
+            "senamatography": "Included in the course",
+            "photography": "Included in the course",
+            "video editing": "Included in the course"
+        },
         "remarks": "It is only online course.",
         "howToBuy": {
             "type": "callOrWebsite",

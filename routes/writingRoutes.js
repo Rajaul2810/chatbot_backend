@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { handleWriting, handleWritingQuestion } = require('../controllers/writingController');
+const { handleWriting, handleWritingQuestion, getUserProgress } = require('../controllers/writingController');
 const { ensureMongoUser } = require('../middleware/ensureUser');
 
 router.post('/', ensureMongoUser, handleWriting);
-router.get('/question', handleWritingQuestion);
+router.post('/question', ensureMongoUser, handleWritingQuestion);
+router.post('/progress', ensureMongoUser, getUserProgress);
 
 module.exports = router;
