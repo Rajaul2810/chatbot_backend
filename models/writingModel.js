@@ -36,9 +36,6 @@ const SubmissionSchema = new mongoose.Schema({
   AiGenerateWriting: {
     type: String,
   },
-  ReWriteCorrectVersion: {
-    type: String,
-  },
   ReWriteImprovementVersion: {
     type: String,
   },
@@ -50,6 +47,12 @@ const SubmissionSchema = new mongoose.Schema({
   },
   TotalSentenceError: {
     type: String,
+  },
+  listofWords: {
+    type: mongoose.Schema.Types.Mixed
+  },
+  listofSentences: {
+    type: mongoose.Schema.Types.Mixed
   },
   score: {
     taskAchievement: { type: Number, min: 0, max: 9 },

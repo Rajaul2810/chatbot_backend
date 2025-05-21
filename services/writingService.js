@@ -10,8 +10,9 @@ const generateWritingResponse = async (userInput, question) => {
 - TotalGrammerError: Total grammer error in the student's writing.
 - TotalVocabularyError: Total vocabulary error in the student's writing.
 - TotalSentenceError: Total sentence error in the student's writing.
-- ReWriteCorrectVersion: rewrite the student's writing with correct version.
 - ReWriteImprovementVersion: rewrite the student's writing with improvement version.
+- listofWords: spelling mistake এবং correct দুটোই list আকারে দাও, যেন multiple ভুল এবং তাদের সংশোধন দেখানো যায় index এর সাহায্যে।
+- listofSentences: sentence level mistake এবং correct দুটোই list আকারে দাও, যেন multiple ভুল এবং তাদের সংশোধন দেখানো যায় index এর সাহায্যে।
 
 Evaluate the student's writing based on IELTS Band Descriptors:
 - Task Achievement (TA)
@@ -33,7 +34,14 @@ Output the entire response ONLY in the following strict JSON format:
   "TotalGrammerError": "",
   "TotalVocabularyError": "",
   "TotalSentenceError": "",
-  "ReWriteCorrectVersion": "",
+  "listofWords": {
+  "mistake": [],
+  "correct": []
+},
+"listofSentences": {
+  "mistake": [],
+  "correct": []
+},
   "ReWriteImprovementVersion": "",
   "taskAchievement": {
     "score": 0,
@@ -61,12 +69,12 @@ ${question}
 
   try {
     const completion = await openai.chat.completions.create({
-        model: 'gpt-4o-mini', //gpt-4o-mini //gpt-4o //gpt-3.5-turbo
-        messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: userInput }
-        ],
-        temperature: 0.7,
+      model: 'gpt-4o-mini', //gpt-4o-mini //gpt-4o //gpt-3.5-turbo
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userInput }
+      ],
+      temperature: 0.7,
     });
 
     const content = completion.choices[0].message.content;

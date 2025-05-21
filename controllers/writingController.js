@@ -69,11 +69,12 @@ const handleWriting = async (req, res) => {
       AiMotivation: evaluation.AiMotivation,
       AiSuggestions: evaluation.AiSuggestions,
       AiGenerateWriting: evaluation.AiGenerateWriting,
-      ReWriteCorrectVersion: evaluation.ReWriteCorrectVersion,
       ReWriteImprovementVersion: evaluation.ReWriteImprovementVersion,
       TotalGrammerError: evaluation.TotalGrammerError,
       TotalVocabularyError: evaluation.TotalVocabularyError,
       TotalSentenceError: evaluation.TotalSentenceError,
+      listofWords: evaluation.listofWords,
+      listofSentences: evaluation.listofSentences,
       score: {
         taskAchievement: evaluation.taskAchievement?.score,
         coherenceAndCohesion: evaluation.coherenceAndCohesion?.score,
