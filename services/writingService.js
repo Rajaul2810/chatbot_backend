@@ -26,7 +26,7 @@ For each criterion, provide:
 
  
 
-Output the entire response ONLY in the following strict JSON format:
+Output the entire response ONLY in the following strict JSON format. always use this format do not change anything and do not empty any field:
 {
  "AiGenerateWriting": "",
   "AiMotivation": "",
