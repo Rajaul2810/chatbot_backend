@@ -162,7 +162,7 @@ Use ${category} and ${context} if provided to customize replies.
   }
 
   const completion = await openai.chat.completions.create({
-    model: 'gpt-4-turbo', //gpt-4o-mini //gpt-4o //gpt-3.5-turbo
+    model: 'gpt-4o', //gpt-4o-mini //gpt-4o //gpt-3.5-turbo
     messages: [
       { role: 'system', content: systemPrompt },
       { role: 'user', content: userInput }
