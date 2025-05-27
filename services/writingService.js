@@ -11,8 +11,8 @@ const generateWritingResponse = async (userInput, question) => {
 - TotalVocabularyError: Total vocabulary error in the student's writing.
 - TotalSentenceError: Total sentence error in the student's writing.
 - ReWriteImprovementVersion: rewrite the student's writing with improvement version.
-- listofWords: spelling mistake এবং correct দুটোই list আকারে দাও, যেন multiple ভুল এবং তাদের সংশোধন দেখানো যায় index এর সাহায্যে।
-- listofSentences: sentence level mistake এবং correct দুটোই list আকারে দাও, যেন multiple ভুল এবং তাদের সংশোধন দেখানো যায় index এর সাহায্যে।
+- ReWriteCorrectWords: surround the original incorrect parts with ❗ ❗ and the corrected version with ✔️ ✔️ and ' → ' separate within incorrect and corrected parts.Output the full rewritten paragraph with corrections embedded.
+- ReWriteCorrectSentences: surround the original incorrect parts with ❗ ❗ and the corrected version with ✔️ ✔️ and ' → ' separate within incorrect and corrected parts. Output the full rewritten paragraph with corrections embedded and full sentence.
 
 Evaluate the student's writing based on IELTS Band Descriptors:
 - Task Achievement (TA)
@@ -21,39 +21,33 @@ Evaluate the student's writing based on IELTS Band Descriptors:
 - Grammatical Range and Accuracy (GRA)
 
 For each criterion, provide:
-- Score (decimal format, between 1.0 and 9.0)
+- Score (decimal format, score 1.0,1.5 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0) always use this score. 
 
 
  
 
 Output the entire response ONLY in the following strict JSON format. always use this format do not change anything and do not empty any field:
 {
- "AiGenerateWriting": "",
+  "AiGenerateWriting": "",
   "AiMotivation": "",
   "AiSuggestions": "",
   "TotalGrammerError": "",
   "TotalVocabularyError": "",
   "TotalSentenceError": "",
-  "listofWords": {
-  "mistake": [],
-  "correct": []
-},
-"listofSentences": {
-  "mistake": [],
-  "correct": []
-},
+  "ReWriteCorrectWords": "",
+  "ReWriteCorrectSentences": "",
   "ReWriteImprovementVersion": "",
   "taskAchievement": {
-    "score": 0,
+    "score": 0
   },
   "coherenceAndCohesion": {
-    "score": 0,
+    "score": 0
   },
   "lexicalResource": {
-    "score": 0,
+    "score": 0
   },
   "grammaticalRangeAndAccuracy": {
-    "score": 0,
+    "score": 0
   },
   "overallBandScore": 0,
   "generalFeedback": ""

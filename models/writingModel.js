@@ -48,11 +48,11 @@ const SubmissionSchema = new mongoose.Schema({
   TotalSentenceError: {
     type: String,
   },
-  listofWords: {
-    type: mongoose.Schema.Types.Mixed
+  ReWriteCorrectWords: {
+    type: String,
   },
-  listofSentences: {
-    type: mongoose.Schema.Types.Mixed
+  ReWriteCorrectSentences: {
+    type: String,
   },
   score: {
     taskAchievement: { type: Number, min: 0, max: 9 },

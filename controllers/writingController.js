@@ -73,8 +73,8 @@ const handleWriting = async (req, res) => {
       TotalGrammerError: evaluation.TotalGrammerError,
       TotalVocabularyError: evaluation.TotalVocabularyError,
       TotalSentenceError: evaluation.TotalSentenceError,
-      listofWords: evaluation.listofWords,
-      listofSentences: evaluation.listofSentences,
+      ReWriteCorrectWords: evaluation.ReWriteCorrectWords,
+      ReWriteCorrectSentences: evaluation.ReWriteCorrectSentences,
       score: {
         taskAchievement: evaluation.taskAchievement?.score,
         coherenceAndCohesion: evaluation.coherenceAndCohesion?.score,
