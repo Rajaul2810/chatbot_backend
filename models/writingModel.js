@@ -75,7 +75,30 @@ const SubmissionSchema = new mongoose.Schema({
     type: String,
     enum: ['pending', 'evaluated', 'rejected'],
     default: 'pending'
+  },
+  submissionDate: {
+    type: Date,
+    default: Date.now
   }
 }, { timestamps: true });
+
+// Static method to check daily submission limit
+SubmissionSchema.statics.checkDailyLimit = async function(userId) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  const dailySubmissions = await this.countDocuments({
+    userId: userId,
+    submissionDate: {
+      $gte: today,
+      $lt: tomorrow
+    }
+  });
+
+  return dailySubmissions < 2; // Returns true if user can submit more, false if limit reached
+};
 
 module.exports = mongoose.model('Submission', SubmissionSchema);

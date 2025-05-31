@@ -57,6 +57,15 @@ const handleWriting = async (req, res) => {
   }
 
   try {
+    // Check daily submission limit
+    const canSubmit = await Submission.checkDailyLimit(userId);
+    if (!canSubmit) {
+      return res.status(429).json({ 
+        error: 'Daily submission limit reached. You can submit up to 2 writings per day.',
+        limitReached: true
+      });
+    }
+
     const evaluation = await generateWritingResponse(message, questionId);
     const overallScore = evaluation.overallBandScore;
 
@@ -90,7 +99,8 @@ const handleWriting = async (req, res) => {
         grammaticalRangeAndAccuracy: evaluation.grammaticalRangeAndAccuracy
       },
       evaluator: 'AI',
-      status: 'evaluated'
+      status: 'evaluated',
+      submissionDate: new Date()
     });
 
     const savedSubmission = await submission.save();
@@ -186,6 +196,20 @@ const getUserProgress = async (req, res) => {
     const currentLevel = questionsJson.levels.find(l => l.name === user.level);
     const currentQuestion = currentLevel?.topics[user.currentQuestionIndex];
 
+    // Get today's submission count
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    const dailySubmissions = await Submission.countDocuments({
+      userId: userId,
+      submissionDate: {
+        $gte: today,
+        $lt: tomorrow
+      }
+    });
+
     res.json({
       level: user.level,
       currentQuestion: currentQuestion,
@@ -194,7 +218,9 @@ const getUserProgress = async (req, res) => {
       completedQuestions: user.completedQuestions.length,
       averageScore: user.averageScore,
       totalSubmissions: user.totalSubmissions,
-      lastSubmissionDate: user.lastSubmissionDate
+      lastSubmissionDate: user.lastSubmissionDate,
+      dailySubmissions: dailySubmissions,
+      canSubmitMore: dailySubmissions < 2
     });
   } catch (error) {
     console.error("Error getting user progress:", error);
