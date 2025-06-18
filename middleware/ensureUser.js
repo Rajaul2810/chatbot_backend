@@ -1,4 +1,4 @@
-const User = require('../models/writingUser');
+const User = require('../models/User');
 
 exports.ensureMongoUser = async (req, res, next) => {
   const { mysqlUserId, name, email, phone } = req.body;

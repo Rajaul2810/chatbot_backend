@@ -1,25 +1,25 @@
 const fs = require('fs');
 const path = require('path');
-const { generateWritingResponse } = require('../services/writingService');
-const Submission = require('../models/writingModel');
+const { generateSpeakingResponse } = require('../services/speakingService');
+const SpeakingSubmission = require('../models/speakingModel');
 const User = require('../models/User');
 
 // Function to get the next writing question for a user
-const getNextWritingQuestion = async (userId) => {
+const getNextSpeakingQuestion = async (userId) => {
   try {
     const user = await User.findById(userId);
     if (!user) {
       throw new Error('User not found');
     }
 
-    const questionsPath = path.join(__dirname, '..', 'data', 'writingQuestions.json');
+    const questionsPath = path.join(__dirname, '..', 'data', 'speakingQuestions.json');
     const questionsData = fs.readFileSync(questionsPath, 'utf-8');
     const questionsJson = JSON.parse(questionsData);
 
     //console.log(questionsJson);
     
     // Find current level using name instead of level code
-    const currentLevel = questionsJson.levels.find(l => l.name === user.writingLevel);
+    const currentLevel = questionsJson.levels.find(l => l.name === user.speakingLevel);
     if (!currentLevel) {
       throw new Error('Invalid level');
     }
@@ -27,24 +27,24 @@ const getNextWritingQuestion = async (userId) => {
     //console.log(currentLevel);
 
     // Get current question
-    const currentQuestion = currentLevel.topics[user.currentQuestionIndex];
+    const currentQuestion = currentLevel.topics[user.speakingCurrentQuestionIndex];
     if (!currentQuestion) {
       throw new Error('No more questions in current level');
     }
     //console.log(currentQuestion);
     return {
       question: currentQuestion,
-      writingLevel: user.writingLevel,
-      questionNumber: user.currentQuestionIndex + 1,
+      speakingLevel: user.speakingLevel,
+      questionNumber: user.speakingCurrentQuestionIndex + 1,
       totalQuestions: currentLevel.topics.length
     };
   } catch (error) {
-    console.error("Error getting next writing question:", error);
+    console.error("Error getting next speaking question:", error);
     throw error;
   }
 };
 
-const handleWriting = async (req, res) => {
+const handleSpeaking = async (req, res) => {
   const { message, questionId, questionTitle, taskType, mysqlUserId, name, email, phone } = req.body;
   const userId = req.mongoUser?._id;
 
@@ -58,18 +58,18 @@ const handleWriting = async (req, res) => {
 
   try {
     // Check daily submission limit
-    const canSubmit = await Submission.checkDailyLimit(userId);
+    const canSubmit = await SpeakingSubmission.checkDailyLimit(userId);
     if (!canSubmit) {
       return res.status(429).json({ 
-        error: 'Daily submission limit reached. You can submit up to 2 writings per day.',
+        error: 'Daily submission limit reached. You can submit up to 2 speakings per day.',
         limitReached: true
       });
     }
 
-    const evaluation = await generateWritingResponse(message, questionId);
+    const evaluation = await generateSpeakingResponse(message, questionId);
     const overallScore = evaluation.overallBandScore;
 
-    const submission = new Submission({
+    const submission = new SpeakingSubmission({
       userId: userId,
       questionId: questionId,
       taskType: taskType,
@@ -77,7 +77,7 @@ const handleWriting = async (req, res) => {
       content: message,
       AiMotivation: evaluation.AiMotivation,
       AiSuggestions: evaluation.AiSuggestions,
-      AiGenerateWriting: evaluation.AiGenerateWriting,
+      AiGenerateSpeaking: evaluation.AiGenerateSpeaking,
       ReWriteImprovementVersion: evaluation.ReWriteImprovementVersion,
       TotalGrammerError: evaluation.TotalGrammerError,
       TotalVocabularyError: evaluation.TotalVocabularyError,
@@ -85,18 +85,18 @@ const handleWriting = async (req, res) => {
       ReWriteCorrectWords: evaluation.ReWriteCorrectWords,
       ReWriteCorrectSentences: evaluation.ReWriteCorrectSentences,
       score: {
-        taskAchievement: evaluation.taskAchievement?.score,
-        coherenceAndCohesion: evaluation.coherenceAndCohesion?.score,
+        fluencyAndCoherence: evaluation.fluencyAndCoherence?.score,
         lexicalResource: evaluation.lexicalResource?.score,
         grammaticalRangeAndAccuracy: evaluation.grammaticalRangeAndAccuracy?.score,
-        overallBandScore: overallScore
+        pronunciation: evaluation.pronunciation?.score,
+        overallBandScore: evaluation.overallBandScore
       },
       feedback: evaluation.generalFeedback,
       detailedFeedback: {
-        taskAchievement: evaluation.taskAchievement,
-        coherenceAndCohesion: evaluation.coherenceAndCohesion,
+        fluencyAndCoherence: evaluation.fluencyAndCoherence,
         lexicalResource: evaluation.lexicalResource,
-        grammaticalRangeAndAccuracy: evaluation.grammaticalRangeAndAccuracy
+        grammaticalRangeAndAccuracy: evaluation.grammaticalRangeAndAccuracy,
+        pronunciation: evaluation.pronunciation
       },
       evaluator: 'AI',
       status: 'evaluated',
@@ -110,7 +110,7 @@ const handleWriting = async (req, res) => {
     
     // Add to completed questions if score is 7 or above
     if (overallScore >= 7) {
-      user.completedQuestions.push({
+      user.speakingCompletedQuestions.push({
         questionId: questionId,
         score: overallScore,
         completedAt: new Date()
@@ -118,66 +118,65 @@ const handleWriting = async (req, res) => {
     }
 
     // Always move to next question
-    const questionsPath = path.join(__dirname, '..', 'data', 'writingQuestions.json');
+    const questionsPath = path.join(__dirname, '..', 'data', 'speakingQuestions.json');
     const questionsData = fs.readFileSync(questionsPath, 'utf-8');
     const questionsJson = JSON.parse(questionsData);
     
-    const currentLevel = questionsJson.levels.find(l => l.name === user.writingLevel);
+    const currentLevel = questionsJson.levels.find(l => l.name === user.speakingLevel);
     
     // If completed all questions in current level, move to next level
-    if (user.currentQuestionIndex + 1 >= currentLevel.topics.length) {
-      const currentLevelIndex = questionsJson.levels.findIndex(l => l.name === user.writingLevel);
+    if (user.speakingCurrentQuestionIndex + 1 >= currentLevel.topics.length) {
+      const currentLevelIndex = questionsJson.levels.findIndex(l => l.name === user.speakingLevel);
       if (currentLevelIndex < questionsJson.levels.length - 1) {
-        user.writingLevel = questionsJson.levels[currentLevelIndex + 1].name;
-        user.currentQuestionIndex = 0;
+        user.speakingLevel = questionsJson.levels[currentLevelIndex + 1].name;
+        user.speakingCurrentQuestionIndex = 0;
       }
     } else {
-      user.currentQuestionIndex += 1;
+      user.speakingCurrentQuestionIndex += 1;
     }
 
     // Update user stats
-    user.totalSubmissions += 1;
-    user.lastSubmissionDate = new Date();
-    user.averageScore = Math.round(((user.averageScore * (user.totalSubmissions - 1) + overallScore) / user.totalSubmissions) * 100) / 100;
+    user.speakingTotalSubmissions += 1;
+    user.speakingLastSubmissionDate = new Date();
+    user.speakingAverageScore = Math.round(((user.speakingAverageScore * (user.speakingTotalSubmissions - 1) + overallScore) / user.speakingTotalSubmissions) * 100) / 100;
     
     await user.save();
 
     res.status(201).json({
       submission: savedSubmission,
       progress: {
-        writingLevel: user.writingLevel,
-        currentQuestionIndex: user.currentQuestionIndex,
-        averageScore: user.averageScore,
-        completedQuestions: user.completedQuestions.length
+        speakingLevel: user.speakingLevel,
+        speakingCurrentQuestionIndex: user.speakingCurrentQuestionIndex,
+        speakingAverageScore: user.speakingAverageScore,
+        speakingCompletedQuestions: user.speakingCompletedQuestions.length
       }
     });
 
   } catch (error) {
-    console.error("Error in handleWriting:", error);
+    console.error("Error in handleSpeaking:", error);
     if (error.message === "Failed to get evaluation from AI service." || error.message === "Failed to parse evaluation data from AI service.") {
       res.status(502).json({ error: `Evaluation service error: ${error.message}` });
     } else {
-      res.status(500).json({ error: 'An unexpected error occurred while processing your writing submission.' });
+      res.status(500).json({ error: 'An unexpected error occurred while processing your speaking submission.' });
     }
   }
 };
 
-const handleWritingQuestion = async (req, res) => {
+const handleSpeakingQuestion = async (req, res) => {
   try {
     const userId = req.mongoUser?._id;
     if (!userId) {
       return res.status(400).json({ error: 'User not authenticated' });
     }
 
-    const questionData = await getNextWritingQuestion(userId);
+    const questionData = await getNextSpeakingQuestion(userId);
     res.json(questionData);
   } catch (error) {
-    res.status(500).json({ error: error.message || 'Failed to retrieve a writing question.' });
+    res.status(500).json({ error: error.message || 'Failed to retrieve a speaking question.' });
   }
 };
 
 const getUserProgress = async (req, res) => {
-  console.log("getUserProgress", req.body);
   try {
     const userId = req.mongoUser?._id;
     if (!userId) {
@@ -190,12 +189,12 @@ const getUserProgress = async (req, res) => {
     }
 
     // Get level information
-    const questionsPath = path.join(__dirname, '..', 'data', 'writingQuestions.json');
+    const questionsPath = path.join(__dirname, '..', 'data', 'speakingQuestions.json');
     const questionsData = fs.readFileSync(questionsPath, 'utf-8');
     const questionsJson = JSON.parse(questionsData);
     
-    const currentLevel = questionsJson.levels.find(l => l.name === user.writingLevel);
-    const currentQuestion = currentLevel?.topics[user.currentQuestionIndex];
+    const currentLevel = questionsJson.levels.find(l => l.name === user.speakingLevel);
+    const currentQuestion = currentLevel?.topics[user.speakingCurrentQuestionIndex];
 
     // Get today's submission count
     const today = new Date();
@@ -203,7 +202,7 @@ const getUserProgress = async (req, res) => {
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
     
-    const dailySubmissions = await Submission.countDocuments({
+    const dailySubmissions = await SpeakingSubmission.countDocuments({
       userId: userId,
       submissionDate: {
         $gte: today,
@@ -212,14 +211,14 @@ const getUserProgress = async (req, res) => {
     });
 
     res.json({
-      writingLevel: user.writingLevel,
+      speakingLevel: user.speakingLevel,
       currentQuestion: currentQuestion,
-      questionNumber: user.currentQuestionIndex + 1,
+      questionNumber: user.speakingCurrentQuestionIndex + 1,
       totalQuestions: currentLevel?.topics.length || 0,
-      completedQuestions: user.completedQuestions.length,
-      averageScore: user.averageScore,
-      totalSubmissions: user.totalSubmissions,
-      lastSubmissionDate: user.lastSubmissionDate,
+      speakingCompletedQuestions: user.speakingCompletedQuestions.length,
+      speakingAverageScore: user.speakingAverageScore,
+      speakingTotalSubmissions: user.speakingTotalSubmissions,
+      speakingLastSubmissionDate: user.speakingLastSubmissionDate,
       dailySubmissions: dailySubmissions,
       canSubmitMore: dailySubmissions < 2
     });
@@ -229,4 +228,4 @@ const getUserProgress = async (req, res) => {
   }
 };
 
-module.exports = { handleWriting, handleWritingQuestion, getUserProgress };
+module.exports = { handleSpeaking, handleSpeakingQuestion, getUserProgress };

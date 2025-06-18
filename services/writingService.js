@@ -12,7 +12,7 @@ const generateWritingResponse = async (userInput, question) => {
 - TotalSentenceError: Total sentence error in the student's writing.
 - ReWriteImprovementVersion: rewrite the student's writing with improvement version.
 - ReWriteCorrectWords: surround the original incorrect parts with ❌ ❌ and the corrected version with ✅ ✅ and ' → ' separate within incorrect and corrected parts.Output the full rewritten paragraph with corrections embedded.
-- ReWriteCorrectWords: example: ❌ school ❌ → ✅ school ✅
+- ReWriteCorrectWords: example: ❌ schol ❌ → ✅ school ✅
 
 - ReWriteCorrectSentences: surround the original incorrect parts with ❌ ❌ and the corrected version with ✅ ✅ and ' → ' separate within incorrect and corrected parts. Output the full rewritten paragraph with corrections embedded and full sentence.
 - ReWriteCorrectSentences: example: ❌ i school ❌ → ✅ I go to school ✅

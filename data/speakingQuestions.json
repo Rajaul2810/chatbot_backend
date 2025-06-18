@@ -1,0 +1,57 @@
+{
+  "levels": [
+    {
+      "level": "S1",
+      "name": "Beginner",
+      "topics": [
+        {
+          "id": "s1-1",
+          "title": "The Kind of Accommodation You Live In",
+          "subtopics": [
+            "Do you live in a house or a flat?",
+            "Is it a big place?",
+            "Does the place you live in have many amenities?",
+            "What do you like the most about living there?",
+            "Is there anything you would like to change about that place?",
+            "How long have you lived there?",
+            "Do you plan to live there for a long time?",
+            "Is there an open space or garden in your place?",
+            "What do you think it is important to have an open space in the living place?"
+          ]
+        },
+        {
+          "id": "s1-2",
+          "title": "Animals",
+          "subtopics": [
+            "Why do people like to keep pets?",
+            "What should we do to protect endangered animals?",
+            "Do you support doing experiments on animals?",
+            "Why do some people refuse to eat animals?",
+            "What would happen when some species disappear on earth?",
+            "Do you think that aquatic animals are dangerous?",
+            "Earlier people used animals for their work. Now, what do people use to do their work?",
+            "Why animals are getting extinct in the present time?"
+          ]
+        }
+      ]
+    },
+    {
+      "level": "S2",
+      "name": "Intermediate",
+      "topics": [
+        {
+          "id": "s2-1",
+          "title": "Cue Cards for Description",
+          "subtopics": [
+            "Describe an advertisement that persuaded you to buy a product.",
+            "Describe a challenging thing you have done.",
+            "Describe an old person you know and you respect a lot.",
+            "Describe a child you know and admire a lot.",
+            "Describe someone you had a good influence in your life.",
+            "Describe a shop in your hometown."
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -17,6 +17,9 @@ app.use('/api/chat', chatRoute);
 const writingRoute = require('./routes/writingRoutes');
 app.use('/api/writing', writingRoute);
 
+const speakingRoute = require('./routes/speakingRoute');
+app.use('/api/speaking', speakingRoute);
+
 // Define a simple route
 app.get('/', (req, res) => {
   res.send('mentors & study abroad chatbot is running!');
