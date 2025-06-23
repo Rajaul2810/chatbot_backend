@@ -9,9 +9,9 @@ Instructions:
 
 1. **AiGenerateSpeaking**: Estimate whether the student's response was AI-generated. Return only percentage from: 50%, 60%, 70%, 80%, 90%, or 100%.always string type.
 
-2. **AiMotivation**: A motivational paragraph for the student to improve their speaking in bangla choto sentence cheer up sentence.always string type.
+2. **AiMotivation**: A motivational paragraph for the student to improve their speaking in english cheer up small sentence.always string type.
 
-3. **AiSuggestions**: A list of suggestions for the student to improve their speaking in bangla choto sentence.always string type.
+3. **AiSuggestions**: A list of suggestions for the student to improve their speaking in english small sentence.always string type.
 
 4. **Error Analysis**:
    - **TotalGrammerError**: Count of grammar issues.
