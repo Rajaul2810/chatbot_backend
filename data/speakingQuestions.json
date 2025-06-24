@@ -6,35 +6,39 @@
       "topics": [
         {
           "id": "s1-1",
-          "title": "The Kind of Accommodation You Live In",
+          "title": "Describe a party that you enjoyed.",
           "subtopics": [
-            "Do you live in a house or a flat?",
-            "Is it a big place?",
-            "Does the place you live in have many amenities?",
-            "What do you like the most about living there?",
-            "Is there anything you would like to change about that place?",
-            "How long have you lived there?",
-            "Do you plan to live there for a long time?",
-            "Is there an open space or garden in your place?",
-            "What do you think it is important to have an open space in the living place?"
+            "When and where the party was held",
+                "Who attended the party",
+                "What kind of party it was",
+                "What you did in the party",
+                "And explain why you enjoyed this party"
           ]
         },
         {
           "id": "s1-2",
-          "title": "Animals",
+          "title": "Describe a person who has strong opinions.",
           "subtopics": [
-            "Why do people like to keep pets?",
-            "What should we do to protect endangered animals?",
-            "Do you support doing experiments on animals?",
-            "Why do some people refuse to eat animals?",
-            "What would happen when some species disappear on earth?",
-            "Do you think that aquatic animals are dangerous?",
-            "Earlier people used animals for their work. Now, what do people use to do their work?",
-            "Why animals are getting extinct in the present time?"
+            "Who this person is",
+                "How you know him/her",
+                "Why you think he/she is a person who has strong opinions",
+                "What kinds of strong opinions this person has",
+                "And explain how you feel about his/her opinions"
+          ]
+        },
+        {
+          "id": "s1-3",
+          "title": "Describe a prize you have received recently (e.g. money, something valuable, a medal).",
+          "subtopics": [
+           "What it was",
+                "When you received it",
+                "What you did to receive it",
+                "And explain how you felt about it"
           ]
         }
       ]
     },
+    
     {
       "level": "S2",
       "name": "Intermediate",
@@ -49,6 +53,94 @@
             "Describe a child you know and admire a lot.",
             "Describe someone you had a good influence in your life.",
             "Describe a shop in your hometown."
+          ]
+        },
+        {
+          "id": "s2-2",
+          "title": "The Kind of Accommodation You Live In",
+          "subtopics": [
+            "Do you live in a house or a flat?",
+            "Is it a big place?",
+            "Does the place you live in have many amenities?",
+            "What do you like the most about living there?",
+            "Is there anything you would like to change about that place?",
+            "How long have you lived there?",
+            "Do you plan to live there for a long time?",
+            "Is there an open space or garden in your place?",
+            "What do you think it is important to have an open space in the living place?"
+          ]
+        },
+        {
+          "id": "s2-3",
+          "title": "Animals",
+          "subtopics": [
+            "Why do people like to keep pets?",
+            "What should we do to protect endangered animals?",
+            "Do you support doing experiments on animals?",
+            "Why do some people refuse to eat animals?",
+            "What would happen when some species disappear on earth?",
+            "Do you think that aquatic animals are dangerous?",
+            "Earlier people used animals for their work. Now, what do people use to do their work?",
+            "Why animals are getting extinct in the present time?"
+          ]
+        },
+        {
+          "id": "s2-4",
+          "title": "Describe your favourite food at a traditional festival or a special event in your country.",
+          "subtopics": [
+            "What it is",
+            "At which festival/event you eat it",
+            "How it is made",
+            "And explain why you like it"
+          ]
+        },
+        {
+          "id": "s2-5",
+          "title": "Describe an occasion when you helped a family member/relative with something.",
+          "subtopics": [
+            "When it happened",
+                "Who you helped",
+                "How you helped",
+                "And explain how you felt about the experience"
+          ]
+        }
+        
+      ]
+    },
+    {
+      "level": "S3",
+      "name": "Advanced",
+      "topics": [
+        {
+          "id": "s3-1",
+          "title": "Describe a time when you answered a phone call from someone you didn’t know in a public place.",
+          "subtopics": [
+            "When and where it happened",
+                "Who called you",
+                "What he/she said",
+                "How you corresponded",
+                "And explain how you felt about the experience"
+          ]
+        },
+        {
+          "id": "s3-2",
+          "title": "Describe a person who likes to make things by hand (e.g. toys, furniture).",
+          "subtopics": [
+            "Are there any traditional handicrafts in your hometown?",
+                "Who this person is",
+                "What he/she makes",
+                "Why he/she likes to make things by hand",
+                "And explain how you feel about the person"
+          ]
+        },
+        {
+          "id": "s3-3",
+          "title": "Describe a challenge you faced that you thought was rather difficult.",
+          "subtopics": [
+            "What it was",
+                "When and where you faced it",
+                "Why you thought it was a difficult challenge",
+                "And explain how you felt at the time"
           ]
         }
       ]
