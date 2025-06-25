@@ -356,8 +356,8 @@
         }
     },
     "JuniorEnglishAllrounderOnline": {
-        "courseDuration": "3 months",
-        "numberOfClasses": 24,
+        "courseDuration": "5 months",
+        "numberOfClasses": 48,
         "classDuration": "2 hours/class",
         "targetAudience": "Students of Class 5–9",
         "skillsCovered": [
@@ -456,7 +456,7 @@
         "numberOfClasses": 43,
         "classDuration": "2 hours/class",
         "price": {
-            "online": 9500,
+            "online": 8075,
             "onCampus": 16000
         },
         "howToBuy": {
@@ -471,7 +471,7 @@
         "numberOfClasses": 40,
         "classDuration": "2 hours/class",
         "price": {
-            "online": 9450,
+            "online": 12075,
             "onCampus": 20700
         },
         "remarks": "English: 14-16 Live Classes Math: 15-17 Live Classes Analytical: 5-7 Live Classes General Knowledge: 2-3 Live Classes (for both BUP & JU-IBA). 15 mock tests are included in the course."
