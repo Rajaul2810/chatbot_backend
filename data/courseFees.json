@@ -89,7 +89,8 @@
                 "howToBuy": {
                     "type": "callOrBranch",
                     "onCampus": "only call or visit a Mentors branch."
-                }
+                },
+                "mockSchedule": "You can schedule mock test according to your convenience website and app. You can also cancel before 48 hours of the scheduled time."
             },
             "BasicPackage": {
                 "price": {
