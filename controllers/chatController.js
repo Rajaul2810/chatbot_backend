@@ -28,7 +28,7 @@ const handleChat = async (req, res) => {
         })
         .filter(msg => msg !== null);
       
-     
+      
     }
     
     const response = await generateChatResponse(message, category, formattedPreviousMessages);
@@ -97,4 +97,42 @@ const testFrontendFormat = async (req, res) => {
   }
 };
 
-module.exports = { handleChat, testConversationContext, testFrontendFormat };
+// Test endpoint for multiple course context
+const testMultipleCourseContext = async (req, res) => {
+  try {
+    // Simulate a conversation with multiple courses
+    const testPreviousMessages = [
+      {
+        role: "user",
+        content: "BBA course details"
+      },
+      {
+        role: "assistant",
+        content: "BBA course টির জন্য ৪ মাসের একটি কোর্স রয়েছে, যেখানে ৪০ টি ক্লাস থাকবে। প্রতিটি ক্লাসের দৈর্ঘ্য ২ ঘণ্টা। অনলাইনে এই কোর্সের মূল্য ১২,০৭৫ টাকা এবং অন-ক্যাম্পাসে ২০,৭০০ টাকা। এই কোর্সের মধ্যে ইংরেজি, গণিত, বিশ্লেষণাত্মক এবং সাধারন জ্ঞানের লাইভ ক্লাস অন্তর্ভুক্ত রয়েছে। ১৫ টি মক টেস্টও অন্তর্ভুক্ত রয়েছে। 😊"
+      },
+      {
+        role: "user",
+        content: "What about MBA course?"
+      },
+      {
+        role: "assistant",
+        content: "MBA course টি IBA, DU এর জন্য প্রস্তুতির জন্য ডিজাইন করা হয়েছে। ৪ মাসের কোর্সে ৪৩ টি ক্লাস রয়েছে, প্রতিটি ২ ঘণ্টা। অনলাইনে মূল্য ৮,০৭৫ টাকা এবং অন-ক্যাম্পাসে ১৬,০০০ টাকা। ৫ টি গুরুত্বপূর্ণ বই এবং ৫ টি মক টেস্ট অন্তর্ভুক্ত। 😊"
+      }
+    ];
+
+    const response = await generateChatResponse("price koto?", "Course & Mock Info", testPreviousMessages);
+    
+    res.json({ 
+      test: "Multiple Course Context Test",
+      userInput: "price koto?",
+      previousMessages: testPreviousMessages,
+      expectedBehavior: "Should provide MBA course price since MBA was the last course discussed",
+      response: response
+    });
+  } catch (error) {
+    console.error("Multiple course context test error:", error);
+    res.status(500).json({ error: 'Multiple course context test failed' });
+  }
+};
+
+module.exports = { handleChat, testConversationContext, testFrontendFormat, testMultipleCourseContext };
