@@ -106,6 +106,9 @@
                 "duration": "7 months but mock valid for 1 year"
             }
         },
+        "MainExamFee": {
+            "description": "IELTS main exam fee is 28,450 Taka. IF you are a student of Mentors or registration by Mentors, you can get 1500 Taka discount on the main exam fee also you get 2 mock test free. Please contact your branch for more details."
+        },
         "SAT": {
             "Regular": {
                 "numberOfClasses": "30",
@@ -217,7 +220,10 @@
                 "type": "callOrWebsite",
                 "onCampus": "Call or visit a Mentors branch."
             },
-            "remarks": "It is only on campus course and if you wanto to buy this course first you will be permitted by mentors permission."
+            "remarks": "It is only on campus course and if you wanto to buy this course first you will be permitted by mentors permission.",
+            "MainExamFee": {
+                "description": "GED main exam fee is 1 subject 12000 tk. 4 subjects 46000 tk. and if you are not a student of Mentors then 500 tk extra fee. Please contact your branch for more details."
+            }
         },
         "PTE": {
             "Regular": {
@@ -242,6 +248,9 @@
                 "includes": {
                     "supportCenter": "Unlimited interviews and listening practice"
                 }
+            },
+            "MainExamFee": {
+                "description": "PTE main exam fee is 28,000 Taka or 220 dollars. Please contact your branch for more details."
             }
         },
         "SpokenEnglish": {
