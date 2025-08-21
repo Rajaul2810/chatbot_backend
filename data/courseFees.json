@@ -74,9 +74,6 @@
                     "type": "callOrWebsite",
                     "onCampusNote": "Call or Visit a nearest Mentors' Branch and get admission.",
                     "onlineNote": "Visit url https://mentorslearning.com and find Online IELTS Regular under live courses category."
-                },
-                "includes": {
-                    "mockTest": "20 mock tests"
                 }
             },
             "mockTest": {
@@ -90,7 +87,21 @@
                     "type": "callOrBranch",
                     "onCampus": "only call or visit a Mentors branch."
                 },
-                "mockSchedule": "You can schedule mock test according to your convenience website and app. You can also cancel before 48 hours of the scheduled time."
+                "mockSchedule": "You can schedule mock test according to your convenience website and app. You can also cancel before 48 hours of the scheduled time.",
+                "IOCMock": "IOC means IELTS on Computer mock. Mentors has its own IELTS on Computer mock test center in all branches. and you can do self mock from home.",
+                "IOCMockCenterPrice":{
+                    "3":2100,
+                    "5":3000,
+                    "10":4500
+                },
+                "IOCMockSelfPrice":{
+                    "1":400,
+                    "3":1100,
+                    "5":1800,
+                    "10":3500
+                },
+                "IOCMockSelfRemarks":" Test from Home. You can take the mock at home uing a computer with good internet connection. speaking conducted by Zoom Call.",
+                "IOCMockCenterRemarks":" Test from Center. You can take the mock at the center using a computer with mentors Branches and speaking conducted by teacher."
             },
             "BasicPackage": {
                 "price": {
@@ -530,39 +541,25 @@
     },
     "branches": {
         "Kalabagan": {
-            "location": "166/1 Mirpur Road, Kalabagan, Dhaka-1205",
-            "phone": "09610883388",
-            "email": "info@mentors.com.bd"
+            "location": "166/1 Mirpur Road, Kalabagan, Dhaka-1205"
         },
         "Banani": {
-            "location": "Taneem Square (1st Fl), 158/E Kamal Ataturk Avenue, Banani, Dhaka-1213",
-            "phone": "09610883388",
-            "email": "info@mentors.com.bd"
+            "location": "Taneem Square (1st Fl), 158/E Kamal Ataturk Avenue, Banani, Dhaka-1213"
         },
         "Mouchak": {
-            "location": "128/2 New Circular Road (West Side of Mouchak Market), Mouchak, Dhaka-1219",
-            "phone": "09610883388",
-            "email": "info@mentors.com.bd"
+            "location": "128/2 New Circular Road (West Side of Mouchak Market), Mouchak, Dhaka-1219"
         },
         "Mirpur": {
-            "location": "House 14, Main Road Section 7 (Beside Mirpur 11 Central Mosque), Pallabi, Mirpur, Dhaka",
-            "phone": "09610883388",
-            "email": "info@mentors.com.bd"
+            "location": "House 14, Main Road Section 7 (Beside Mirpur 11 Central Mosque), Pallabi, Mirpur, Dhaka"
         },
         "Uttara Campus 1": {
-            "location": "Level 4, Millenium Tower, House-02, Road-07, Sector-03, Uttara, Dhaka",
-            "phone": "09610883388",
-            "email": "info@mentors.com.bd"
+            "location": "Level 4, Millenium Tower, House-02, Road-07, Sector-03, Uttara, Dhaka"
         },
         "Uttara Campus 2": {
-            "location": "Level-7, Plot 17, Sonargaon Janopath, Sector-13, Uttara, Dhaka",
-            "phone": "09610883388",
-            "email": "info@mentors.com.bd"
+            "location": "Level-7, Plot 17, Sonargaon Janopath, Sector-13, Uttara, Dhaka"
         },
         "Wari": {
-            "location": "7 Folder Street (Wari Abed High School Building), Wari, Dhaka",
-            "phone": "09610883388",
-            "email": "info@mentors.com.bd"
+            "location": "7 Folder Street (Wari Abed High School Building), Wari, Dhaka"
         },
         "Chattogram": {
             "location": "Mannan Bhaban, 156 Nur Ahmed Road, Jubilee Road, Chattogram, Postal Code: 4000",
@@ -594,30 +591,21 @@
             "phone": "01329640895",
             "email": "info@mentors.com.bd"
         },
-        "USA": {
-            "location": "2501 Hunter Place, Suite 201 Woodbridge, VA 22192",
-            "phone": "01713243420",
-            "email": "info@mentors.com.bd"
-        },
-        "Australia": {
-            "location": "25 Soho Court, Keysborough VIC 3173, Melbourne, Australia",
-            "phone": "01713243420",
-            "email": "info@mentors.com.bd"
-        },
+        
         "ieltsExamCenter": {
-            "remarks": "Mentors' All Dhaka branch is the IELTS exam center available. You can take your IELTS exam there."
+            "remarks": "Mentors' All Dhaka branch is the IELTS exam center available.All Dhaka branches phone number is 09610883388 and email is info@mentors.com.bd. You can take your IELTS exam there."
         }
     },
     "tecnicalProblemsAndSupport": {
         "commonTechnicalIssues": [
-            "Login: Try resetting your password. If the problem persists, contact our support at 0171 324 3400.",
-            "Payment: Use SSLCommerz or bKash. If payment fails, contact our support at 0171 324 3400.",
-            "Course Access: Make sure you're logged in with the correct account. For any issues, call 0171 324 3400.",
+            "Login: Try resetting your password. If the problem persists, contact our support at 01713243400.",   
+            "Payment: Use SSLCommerz or bKash. If payment fails, contact our support at 01713243400.",
+            "Course Access: Make sure you're logged in with the correct account. For any issues, call 01713243400.",
             "How to join live class: first go to the website/app and login with your account. then go to the my Learning page you want to join and click on the live class button.",
-            "Technical Issues: For any technical issues, please contact our support team at 0171 324 3400.",
-            "Mock Test schedules: If you're experiencing technical issues with the mock test schedules, please call 0171 324 3400.",
-            "Downloading Course Certificate: login website and go myLerning page and click on the course certificate, please call 0171 324 3400.",
-            "For all technical problems, always contact our support team at 0171 324 3400 or visit any Branch."
+            "Technical Issues: For any technical issues, please contact our support team at 01713243400.",
+            "Mock Test schedules: If you're experiencing technical issues with the mock test schedules, please call 01713243400.",
+            "Downloading Course Certificate: login website and go myLerning page and click on the course certificate, please call 01713243400.",
+            "For all technical problems, always contact our support team at 01713243400 or visit any Branch."
         ]
     },
     "batchScheduleInfo": {
