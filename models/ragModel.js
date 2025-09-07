@@ -25,6 +25,14 @@ const ragSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  path: {
+    type: String,
+    default: ''
+  },
+  tags: {
+    type: [String],
+    default: []
+  },
   metadata: {
     type: mongoose.Schema.Types.Mixed,
     default: {}

@@ -16,17 +16,17 @@
     "update-mongo-rag-category": "node scripts/updateMongoRAGCategory.js"
   },
   "dependencies": {
+    "@langchain/openai": "^0.0.14",
+    "@pinecone-database/pinecone": "^2.1.0",
     "axios": "^1.8.4",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "fs-extra": "^11.2.0",
+    "langchain": "^0.1.37",
     "mongoose": "^8.14.2",
     "multer": "^2.0.2",
     "nodemon": "^3.1.10",
-    "openai": "^4.94.0",
-    "@pinecone-database/pinecone": "^2.1.0",
-    "fs-extra": "^11.2.0",
-    "@langchain/openai": "^0.0.14",
-    "langchain": "^0.1.0"
+    "openai": "^4.94.0"
   }
 }

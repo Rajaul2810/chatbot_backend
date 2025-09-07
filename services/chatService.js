@@ -188,9 +188,9 @@ Relevant Data:\n${context}
   // console.log('===============================');
 
   const completion = await openai.chat.completions.create({
-    model: 'gpt-4o', //gpt-4o-mini //gpt-4o //gpt-3.5-turbo
+    model: 'gpt-4o-mini', //gpt-4o-mini //gpt-4o //gpt-3.5-turbo
     messages: messages,
-    temperature: 0.7,
+    temperature: 0.5,
   });
 
   return completion.choices[0].message.content;

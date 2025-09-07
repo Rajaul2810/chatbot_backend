@@ -106,7 +106,7 @@
             "BasicPackage": {
                 "price": {
                     "onCampus": 18000,
-                    "online": 13000
+                    "online": 14000
                 },
                 "includes": [
                     "Grammar & Writing",
@@ -561,10 +561,18 @@
         "Wari": {
             "location": "7 Folder Street (Wari Abed High School Building), Wari, Dhaka"
         },
+        
+        "Nawabganj": {
+            "location": "Khandokar Tower oppssite Nawabganj Etim Khana, Nawabganj 1320, Dhaka",
+            "phone": "01329640894"
+        },
+        "Brahmanbaria": {
+            "location": "City Center 4th Floor, Court Road, Brahmanbaria",
+            "phone": "01321207484"
+        },
         "Chattogram": {
             "location": "Mannan Bhaban, 156 Nur Ahmed Road, Jubilee Road, Chattogram, Postal Code: 4000",
-            "phone": "01713243432",
-            "email": "info@mentors.com.bd"
+            "phone": "01713243432"
         },
         "Rajshahi": {
             "location": "Giyas Plaza (2nd Floor), Shaheb Bazar, Zero Point, Rajshahi",
@@ -576,7 +584,12 @@
             "phone": "01713384392",
             "email": "info@mentors.com.bd"
         },
-        "Rangpur": {
+        "Rangpur Campus - 2": {
+            "location": "Zara Tower, House#1601, Khamar Mor (Opposite Nesco Office), College Road, Rangpur.",
+            "phone": "01713384393",
+            "email": "info@mentors.com.bd"
+        },
+        "Rangpur Campus - 1": {
             "location": "Joy Tower, House# 02, Road# 01, Dhap Engineer Para Near RDRS Mor, Rangpur",
             "phone": "01713384393",
             "email": "info@mentors.com.bd"

@@ -129,6 +129,8 @@ class MongoRAGService {
             text: match.text,
             category: match.category,
             source: match.source,
+            path: match.path,
+            tags: match.tags,
             timestamp: match.timestamp
           }
         })),
@@ -170,6 +172,8 @@ class MongoRAGService {
             text: doc.text,
             category: doc.category,
             source: doc.source,
+            path: doc.path,
+            tags: doc.tags,
             timestamp: doc.timestamp
           }
         })),
@@ -181,19 +185,81 @@ class MongoRAGService {
     }
   }
 
+  // Process JSONL data (like mentors_kb_chunks.jsonl)
+  async processJSONLData(filePath, category) {
+    try {
+      const content = await fs.readFile(filePath, 'utf-8');
+      const lines = content.trim().split('\n');
+      
+      const vectors = [];
+      
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (!line.trim()) continue;
+        
+        try {
+          const data = JSON.parse(line);
+          const text = data.text || '';
+          const id = data.id || `${category}-${i}`;
+          
+          if (text.trim()) {
+            // Create embedding
+            const embedding = await this.embeddings.embedQuery(text);
+            
+            const vectorDoc = new RAGEmbedding({
+              id: id,
+              embedding: embedding,
+              text: text,
+              category: category,
+              source: data.source || path.basename(filePath),
+              path: data.path || '',
+              tags: data.tags || [],
+              metadata: {
+                ...data.metadata,
+                original_id: data.id,
+                chunk_index: i,
+                timestamp: new Date().toISOString()
+              }
+            });
+            
+            vectors.push(vectorDoc);
+          }
+        } catch (parseError) {
+          console.warn(`Skipping invalid JSON line ${i + 1}:`, parseError.message);
+        }
+      }
+      
+      // Save to MongoDB
+      if (vectors.length > 0) {
+        await RAGEmbedding.insertMany(vectors);
+        console.log(`Added ${vectors.length} documents from ${category}`);
+        return vectors.length;
+      }
+      
+      return 0;
+    } catch (error) {
+      console.error('Error processing JSONL file:', error);
+      throw error;
+    }
+  }
+
   // Update knowledge base
   async updateKnowledgeBase() {
-    const dataDir = path.join(__dirname, '../data');
-    const files = await fs.readdir(dataDir);
+    const ragDataDir = path.join(__dirname, '../data/RagData');
+    const files = await fs.readdir(ragDataDir);
     
     let totalChunks = 0;
     
     for (const file of files) {
-      if (file.endsWith('.json')) {
-        const filePath = path.join(dataDir, file);
-        const category = path.basename(file, '.json');
-        
-        console.log(`Processing ${file}...`);
+      const filePath = path.join(ragDataDir, file);
+      const category = path.basename(file, path.extname(file));
+      
+      console.log(`Processing ${file}...`);
+      
+      if (file.endsWith('.jsonl')) {
+        const chunks = await this.processJSONLData(filePath, category);
+        totalChunks += chunks;
+      } else if (file.endsWith('.json')) {
         const chunks = await this.processDocument(filePath, category);
         totalChunks += chunks;
       }
