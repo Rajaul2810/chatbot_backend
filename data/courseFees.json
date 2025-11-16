@@ -15,7 +15,7 @@
                 "classDuration": "2hours",
                 "price": {
                     "onCampus": 13800,
-                    "online": 8550
+                    "online": 9440
                 },
                 "remarks": "complete IELTS guidance, preparing for studying abroad",
                 "howToBuy": {
@@ -41,7 +41,7 @@
                 "classDuration": "2hours",
                 "price": {
                     "onCampus": 9500,
-                    "online": 6030
+                    "online": 7225
                 },
                 "remarks": "Finished in short amount of time, suitable for students who want moderate understanding of IELTS",
                 "howToBuy": {
@@ -66,14 +66,15 @@
                 "courseDuration": "3.5 months but mock valid for 1 year",
                 "classDuration": "2hours",
                 "price": {
-                    "onCampus": 12650,
-                    "online": 8400
+                    "onCampus": 13800
                 },
-                "remarks": "Same as Online IELTS Regular. only weekends class, Best for professionals",
+                "remarks": "Same as Online IELTS Regular. only weekends class, Best for professionals, offline course only",
                 "howToBuy": {
-                    "type": "callOrWebsite",
-                    "onCampusNote": "Call or Visit a nearest Mentors' Branch and get admission.",
-                    "onlineNote": "Visit url https://mentorslearning.com and find Online IELTS Regular under live courses category."
+                    "type": "callOrBranch",
+                    "onCampusNote": "Call or Visit a nearest Mentors' Branch and get admission."
+                },
+                "includes": {
+                    "mockTest": "20 mock tests"
                 }
             },
             "mockTest": {
@@ -106,7 +107,7 @@
             "BasicPackage": {
                 "price": {
                     "onCampus": 18000,
-                    "online": 14000
+                    "online": 14999
                 },
                 "includes": [
                     "Grammar & Writing",
@@ -237,8 +238,8 @@
             }
         },
         "PTE": {
-            "Regular": {
-                "numberOfClasses": "22",
+            "OnlinePTE": {
+                "numberOfClasses": "24",
                 "FreeResources": [
                     "PTE Academic Online Course (23 Lessons)",
                     "Advanced Vocabulary (11 Lessons)",
@@ -249,7 +250,7 @@
                 "courseDuration": "2 months, 3 days/week",
                 "price": {
                     "onCampus": 13225,
-                    "online": 7000
+                    "online": 8799
                 },
                 "remarks": "Covers all modules with revision; includes support center access.",
                 "howToBuy": {
@@ -260,8 +261,18 @@
                     "supportCenter": "Unlimited interviews and listening practice"
                 }
             },
-            "MainExamFee": {
-                "description": "PTE main exam fee is 28,000 Taka or 220 dollars. Please contact your branch for more details."
+            "PTEBasicPackage": {
+                "price": {
+                    "onCampus": 17000,
+                    "online": 15000
+                },
+                "includes": [
+                    "Grammar & Writing",
+                    "Spoken English",
+                    "Online PTE",
+                    "5 AI-scored mock tests"
+                ],
+                "duration": "7 months but mock valid for 1 year"
             }
         },
         "SpokenEnglish": {
@@ -271,7 +282,7 @@
             "exams": 2,
             "price": {
                 "onCampus": 8395,
-                "online": 4230
+                "online": 4970
             },
             "remarks": "Enhances speaking skills through interactive activities and phonetics.",
             "FreeResources": [
@@ -297,7 +308,7 @@
             "exams": 2,
             "price": {
                 "onCampus": 7245,
-                "online": 3960
+                "online": 4550
             },
             "remarks": "Builds grammar foundation and writing skills for academic and exam purposes.",
             "FreeResources": [
@@ -392,7 +403,7 @@
             "Speed Reading"
         ],
         "price": {
-            "online": 4140
+            "online": 4830
         },
         "remarks": "English skills development for class 5-9 students. It is only online course.",
         "howToBuy": {
@@ -407,7 +418,7 @@
         "classDuration": "1.5 hours/class",
         "targetAudience": "Children aiming to enhance mental arithmetic skills",
         "price": {
-            "online": 4000
+            "online": 6000
         },
         "remarks": "Enhances mental arithmetic and cognitive skills through abacus training. It is only online course.",
         "howToBuy": {
@@ -430,10 +441,10 @@
             "Regular reviews and assessments"
         ],
         "price": {
-            "onCampus": 18400,
-            "remarks": "30% discount available"
+            "onCampus": 10000,
+            "online": 4500
         },
-        "remarks": "foundational skills development for kids of 4-9 years of age. It is only on campus course.",
+        "remarks": "foundational skills development for kids of 4-9 years of age. It is only online course.",
         "howToBuy": {
             "type": "callOrWebsite",
             "onCampus": "Call or visit a Mentors branch."
@@ -506,7 +517,7 @@
                     "Online foundation grammar and writing"
                 ],
                 "price": {
-                    "online": 13000
+                    "online": 14999
                 }
             },
             "juniorComboOffer": {
@@ -515,7 +526,7 @@
                     "Abacus Brain Development"
                 ],
                 "price": {
-                    "online": 8100
+                    "online": 7100
                 }
             },
             "mentalMathCompletePackage": {
@@ -528,7 +539,17 @@
                 "price": {
                     "onCampus": 11200
                 }
+            },
+            "ExecutiveEnglish": {
+                "includedCourses": [
+                    "Online Spoken English & Phonetics",
+                    "Online foundation grammar and writing"
+                ],
+                "price": {
+                    "online": 8750
+                }
             }
+
         },
         "howToBuy": {
             "type": "callOrWebsite",
