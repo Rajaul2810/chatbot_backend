@@ -1,41 +1,49 @@
 const { generateChatResponse } = require('../services/chatService');
+const { detectIntent } = require('../services/intentService');
+
+function formatPreviousMessages(previousMessages) {
+  if (!previousMessages || !Array.isArray(previousMessages)) return [];
+  return previousMessages
+    .filter(msg => msg && typeof msg === 'object')
+    .map(msg => {
+      if (msg.text && msg.sender) {
+        return { role: msg.sender === 'user' ? 'user' : 'assistant', content: msg.text };
+      }
+      if (msg.role && msg.content) return msg;
+      return null;
+    })
+    .filter(msg => msg !== null);
+}
 
 const handleChat = async (req, res) => {
   const { message, category, previousMessages } = req.body;
 
   
   try {
-    // Validate and format previousMessages if needed
-    let formattedPreviousMessages = [];
-    
-    if (previousMessages && Array.isArray(previousMessages)) {
-      // Convert frontend format (text/sender) to backend format (role/content)
-      formattedPreviousMessages = previousMessages
-        .filter(msg => msg && typeof msg === 'object')
-        .map(msg => {
-          // Handle frontend format: { text: "...", sender: "..." }
-          if (msg.text && msg.sender) {
-            return {
-              role: msg.sender === 'user' ? 'user' : 'assistant',
-              content: msg.text
-            };
-          }
-          // Handle backend format: { role: "...", content: "..." }
-          else if (msg.role && msg.content) {
-            return msg;
-          }
-          return null;
-        })
-        .filter(msg => msg !== null);
-      
-      
-    }
-    
+    const formattedPreviousMessages = formatPreviousMessages(previousMessages);
     const response = await generateChatResponse(message, category, formattedPreviousMessages);
     res.json({ response });
   } catch (error) {
     console.error("Chat error:", error);
     res.status(500).json({ error: 'Something went wrong' });
+  }
+};
+
+const handleIntent = async (req, res) => {
+  const { message, category, previousMessages } = req.body;
+  try {
+    const formatted = formatPreviousMessages(previousMessages);
+    const result = await detectIntent(message, category || 'Course & Mock Info', formatted);
+    res.json(result);
+  } catch (error) {
+    console.error('Intent error:', error);
+    res.status(500).json({
+      intent: 'general_question',
+      course: null,
+      confidence: 0,
+      ask_for_phone: false,
+      reply: 'দুঃখিত, আবার চেষ্টা করুন।'
+    });
   }
 };
 
@@ -135,4 +143,4 @@ const testMultipleCourseContext = async (req, res) => {
   }
 };
 
-module.exports = { handleChat, testConversationContext, testFrontendFormat, testMultipleCourseContext };
+module.exports = { handleChat, handleIntent, testConversationContext, testFrontendFormat, testMultipleCourseContext };

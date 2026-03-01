@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { handleChat, testConversationContext, testFrontendFormat, testMultipleCourseContext } = require('../controllers/chatController');
+const { handleChat, handleIntent, testConversationContext, testFrontendFormat, testMultipleCourseContext } = require('../controllers/chatController');
 
 router.post('/', handleChat);
+router.post('/intent', handleIntent);
 router.get('/test-context', testConversationContext);
 router.get('/test-frontend-format', testFrontendFormat);
 router.get('/test-multiple-course', testMultipleCourseContext);
