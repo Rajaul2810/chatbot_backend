@@ -31,6 +31,9 @@ app.use('/api/mongo-rag', mongoRagRoute);
 const leadsRoute = require('./routes/leadsRoutes');
 app.use('/api/leads', leadsRoute);
 
+const complaintRoute = require('./routes/complaintRoutes');
+app.use('/api/complaints', complaintRoute);
+
 // Define a simple route
 app.get('/', (req, res) => {
   res.send('mentors & study abroad chatbot is running!');
