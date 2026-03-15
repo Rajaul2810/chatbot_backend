@@ -151,6 +151,12 @@ Examples of contextual understanding with multiple countries:
 - User: "cost koto?"
 - Assistant: [MUST provide Australia-specific costs, since Australia was the last country discussed]
 
+Contact Information:
+- Contact: https://studyabroadmentors.com/contact
+- Website: https://studyabroadmentors.com
+- Always provide this links in the response.
+- Every response you provide this links.
+
 Category: ${category}
 Relevant Data:\n${context}
 `;

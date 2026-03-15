@@ -24,7 +24,8 @@
                     "onlineNote": "Visit url https://mentorslearning.com and find Online IELTS Regular under live courses category."
                 },
                 "includes": {
-                    "mockTest": "20 mock tests"
+                    "mockTest": "20 mock tests",
+                    "certificate": "Not provided"
                 }
             },
             "Crash": {
@@ -50,7 +51,8 @@
                     "onlineNote": "Visit url https://mentorslearning.com and find Online IELTS crash under live courses category."
                 },
                 "includes": {
-                    "mockTest": "10 mock tests"
+                    "mockTest": "10 mock tests",
+                    "certificate": "Not provided"
                 }
             },
             "Executive": {
@@ -74,7 +76,8 @@
                     "onCampusNote": "Call or Visit a nearest Mentors' Branch and get admission."
                 },
                 "includes": {
-                    "mockTest": "20 mock tests"
+                    "mockTest": "20 mock tests",
+                    "certificate": "Not provided"
                 }
             },
             "mockTest": {
@@ -113,7 +116,8 @@
                     "Grammar & Writing",
                     "Spoken English",
                     "IELTS Regular",
-                    "20 MockTests and valid for 1 year"
+                    "20 MockTests and valid for 1 year",
+                    "certificate provide only (grammar & writing and spoken english courses) not ielts regular course"
                 ],
                 "duration": "7 months but mock valid for 1 year"
             }
@@ -139,7 +143,8 @@
                 },
 
                 "includes": {
-                    "mockTest": "5 mock tests"
+                    "mockTest": "5 mock tests",
+                    "certificate": "Not provided"
                 }
             },
             "SATPlusIELTSRegular": {
@@ -158,7 +163,8 @@
                     "howToBuy": "Visit url https://mentorslearning.com and find Online IELTS Regular under live courses category."
                 },
                 "includes": {
-                    "mockTest": "5 mock tests"
+                    "mockTest": "5 mock tests",
+                    "certificate": "Not provided"
                 }
             },
             "SATPlusIELTSCrash": {
@@ -177,7 +183,8 @@
                     "howToBuy": "Visit url https://mentorslearning.com and find Online IELTS Crash under live courses category. "
                 },
                 "includes": {
-                    "mockTest": "5 mock tests"
+                    "mockTest": "5 mock tests",
+                    "certificate": "Not provided"
                 }
             },
             "MockTests": {
@@ -232,7 +239,10 @@
                 "type": "callOrWebsite",
                 "onCampus": "Call or visit a Mentors branch."
             },
-            "remarks": "It is only on campus course and if you wanto to buy this course first you will be permitted by mentors permission.",
+            "remarks": "It is only on campus course and if you wanto to buy this course first you will be permitted by mentors permission. ",
+            "includes": {
+                "certificate": "Not provided"
+            },
             "MainExamFee": {
                 "description": "GED main exam fee is 1 subject 12000 tk. 4 subjects 46000 tk. and if you are not a student of Mentors then 500 tk extra fee. Please contact your branch for more details."
             }
@@ -270,7 +280,8 @@
                     "Grammar & Writing",
                     "Spoken English",
                     "Online PTE",
-                    "5 AI-scored mock tests"
+                    "5 AI-scored mock tests",
+                    "certificate not provided"
                 ],
                 "duration": "7 months but mock valid for 1 year"
             }
@@ -294,7 +305,8 @@
             "includes": [
                 "2 months access to Language Club",
                 "Free membership to Mentors' Learning",
-                "Access to recorded courses and resources"
+                "Access to recorded courses and resources",
+                "certificate provide only (grammar & writing and spoken english courses) not ielts regular course"
             ],
             "howToBuy": {
                 "onCampus": "Call or visit a Mentors branch.",
@@ -644,6 +656,11 @@
     },
     "batchScheduleInfo": {
         "description": "To check our current batch schedules, please visit url: https://mentors.com.bd/batch_schedule On this page, you can select your preferred branch and course to see all running batches. \n This will provide you with the most up-to-date information about available batches, schedules, and start dates."
-    }
+    },
+    "mobile app":{
+        "android": "https://play.google.com/store/apps/details?id=com.mentors.learningStudyAbroad",
+        "ios": "https://apps.apple.com/us/app/mentors/id6740511256"
+    },
+    "Payment Methods": "bKash, nagad, rocket, bank transfer, cash, sslcommerz all are available. No hidden charges. you pay any course by installment specific date required."
 }
 
