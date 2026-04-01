@@ -5,6 +5,7 @@ const complaintSchema = new mongoose.Schema({
   phone: { type: String, default: '' },
   type: { type: String, default: '' },
   comment: { type: String, default: '' },
+  status: { type: String, default: 'pending' },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Complaint', complaintSchema);
