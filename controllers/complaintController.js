@@ -22,7 +22,8 @@ const storeComplaint = async (req, res) => {
   }
 
   try {
-    const complaint = await Complaint.create({ name, phone, type, comment });    res.status(201).json(complaint);
+    const complaint = await Complaint.create({ name, phone, type, comment });
+    res.status(201).json(complaint);
   } catch (error) {
     console.error('Complaint store error:', error);
     res.status(500).json({ error: 'Failed to save complaint' });
