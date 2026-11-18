@@ -1,10 +1,16 @@
 const fs = require('fs');
 const path = require('path');
-const { generateWritingResponse } = require('../services/writingService');
+const {
+  generateWritingResponse,
+  clampHalfBand,
+  roundOverallBand,
+  normalizeScoreBlock,
+  normalizeSubmissionScores,
+  CRITERION_KEYS,
+} = require('../services/writingService');
 const Submission = require('../models/writingModel');
 const User = require('../models/User');
 
-// Function to get the next writing question for a user
 const getNextWritingQuestion = async (userId) => {
   try {
     const user = await User.findById(userId);
@@ -16,65 +22,93 @@ const getNextWritingQuestion = async (userId) => {
     const questionsData = fs.readFileSync(questionsPath, 'utf-8');
     const questionsJson = JSON.parse(questionsData);
 
-    //console.log(questionsJson);
-    
-    // Find current level using name instead of level code
-    const currentLevel = questionsJson.levels.find(l => l.name === user.writingLevel);
+    const currentLevel = questionsJson.levels.find((l) => l.name === user.writingLevel);
     if (!currentLevel) {
       throw new Error('Invalid level');
     }
 
-    //console.log(currentLevel);
-
-    // Get current question
     const currentQuestion = currentLevel.topics[user.currentQuestionIndex];
     if (!currentQuestion) {
       throw new Error('No more questions in current level');
     }
-    //console.log(currentQuestion);
+
     return {
       question: currentQuestion,
       writingLevel: user.writingLevel,
       questionNumber: user.currentQuestionIndex + 1,
-      totalQuestions: currentLevel.topics.length
+      totalQuestions: currentLevel.topics.length,
     };
   } catch (error) {
-    console.error("Error getting next writing question:", error);
+    console.error('Error getting next writing question:', error);
     throw error;
   }
 };
 
+const summarizeSubmission = (doc) => {
+  const score = normalizeScoreBlock(doc.score || {});
+  let weakestCriterion = 'taskAchievement';
+  let weakestScore = 9;
+  for (const key of CRITERION_KEYS) {
+    const value = score[key];
+    if (value < weakestScore) {
+      weakestScore = value;
+      weakestCriterion = key;
+    }
+  }
+
+  return {
+    id: doc._id,
+    topic: doc.topic,
+    question: doc.topic,
+    taskType: doc.taskType,
+    submissionDate: doc.submissionDate || doc.createdAt,
+    score,
+    topicRelevance: doc.topicRelevance || 'on-topic',
+    nextFocus: doc.nextFocus || null,
+    weakestCriterion,
+  };
+};
+
 const handleWriting = async (req, res) => {
-  const { message, questionId, questionTitle, taskType, mysqlUserId, name, email, phone } = req.body;
+  const { message, questionId, questionTitle, taskType } = req.body;
   const userId = req.mongoUser?._id;
 
   if (!userId) {
     return res.status(400).json({ error: 'User not authenticated or found.' });
   }
 
-    if (!message || !questionId || !taskType) {
-    return res.status(400).json({ error: 'Missing required fields: message, questionId, or taskType.' });
+  if (!message || !questionId || !taskType) {
+    return res.status(400).json({
+      error: 'Missing required fields: message, questionId, or taskType.',
+    });
   }
 
   try {
-    // Check daily submission limit
     const canSubmit = await Submission.checkDailyLimit(userId);
     if (!canSubmit) {
-      return res.status(429).json({ 
+      return res.status(429).json({
         error: 'Daily submission limit reached. You can submit up to 2 writings per day.',
-        limitReached: true
+        limitReached: true,
       });
     }
 
-    const evaluation = await generateWritingResponse(message, questionId);
-    const overallScore = evaluation.overallBandScore;
+    const questionText = questionTitle || String(questionId);
+    const evaluation = await generateWritingResponse(message, questionText, taskType);
+    const score = normalizeScoreBlock({
+      ...evaluation.score,
+      overallBandScore: evaluation.overallBandScore,
+    });
+    const overallScore = score.overallBandScore;
 
+    const questionForStore = questionTitle || questionText;
     const submission = new Submission({
-      userId: userId,
-      questionId: questionId,
-      taskType: taskType,
-      topic: questionTitle,
+      userId,
+      questionId,
+      taskType,
+      topic: questionForStore,
       content: message,
+      topicRelevance: evaluation.topicRelevance || 'on-topic',
+      topicMismatchReason: evaluation.topicMismatchReason || '',
       AiMotivation: evaluation.AiMotivation,
       AiSuggestions: evaluation.AiSuggestions,
       AiGenerateWriting: evaluation.AiGenerateWriting,
@@ -84,80 +118,91 @@ const handleWriting = async (req, res) => {
       TotalSentenceError: evaluation.TotalSentenceError,
       ReWriteCorrectWords: evaluation.ReWriteCorrectWords,
       ReWriteCorrectSentences: evaluation.ReWriteCorrectSentences,
-      score: {
-        taskAchievement: evaluation.taskAchievement?.score,
-        coherenceAndCohesion: evaluation.coherenceAndCohesion?.score,
-        lexicalResource: evaluation.lexicalResource?.score,
-        grammaticalRangeAndAccuracy: evaluation.grammaticalRangeAndAccuracy?.score,
-        overallBandScore: overallScore
-      },
+      wordMistakes: evaluation.wordMistakes || [],
+      sentenceMistakes: evaluation.sentenceMistakes || [],
+      topPriorities: evaluation.topPriorities || [],
+      nextFocus: evaluation.nextFocus || {},
+      score,
       feedback: evaluation.generalFeedback,
-      detailedFeedback: {
-        taskAchievement: evaluation.taskAchievement,
-        coherenceAndCohesion: evaluation.coherenceAndCohesion,
-        lexicalResource: evaluation.lexicalResource,
-        grammaticalRangeAndAccuracy: evaluation.grammaticalRangeAndAccuracy
-      },
+      detailedFeedback: evaluation.detailedFeedback,
       evaluator: 'AI',
       status: 'evaluated',
-      submissionDate: new Date()
+      submissionDate: new Date(),
+      isAIWriting: Number(String(evaluation.AiGenerateWriting).replace('%', '')) > 10,
     });
 
     const savedSubmission = await submission.save();
 
-    // Update user progress
     const user = await User.findById(userId);
-    
-    // Add to completed questions if score is 7 or above
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
     if (overallScore >= 7) {
       user.completedQuestions.push({
-        questionId: questionId,
+        questionId,
         score: overallScore,
-        completedAt: new Date()
+        completedAt: new Date(),
       });
     }
 
-    // Always move to next question
     const questionsPath = path.join(__dirname, '..', 'data', 'writingQuestions.json');
     const questionsData = fs.readFileSync(questionsPath, 'utf-8');
     const questionsJson = JSON.parse(questionsData);
-    
-    const currentLevel = questionsJson.levels.find(l => l.name === user.writingLevel);
-    
-    // If completed all questions in current level, move to next level
-    if (user.currentQuestionIndex + 1 >= currentLevel.topics.length) {
-      const currentLevelIndex = questionsJson.levels.findIndex(l => l.name === user.writingLevel);
-      if (currentLevelIndex < questionsJson.levels.length - 1) {
-        user.writingLevel = questionsJson.levels[currentLevelIndex + 1].name;
-        user.currentQuestionIndex = 0;
+    const currentLevel = questionsJson.levels.find((l) => l.name === user.writingLevel);
+
+    if (currentLevel) {
+      if (user.currentQuestionIndex + 1 >= currentLevel.topics.length) {
+        const currentLevelIndex = questionsJson.levels.findIndex(
+          (l) => l.name === user.writingLevel
+        );
+        if (currentLevelIndex < questionsJson.levels.length - 1) {
+          user.writingLevel = questionsJson.levels[currentLevelIndex + 1].name;
+          user.currentQuestionIndex = 0;
+        }
+      } else {
+        user.currentQuestionIndex += 1;
       }
-    } else {
-      user.currentQuestionIndex += 1;
     }
 
-    // Update user stats
     user.totalSubmissions += 1;
     user.lastSubmissionDate = new Date();
-    user.averageScore = Math.round(((user.averageScore * (user.totalSubmissions - 1) + overallScore) / user.totalSubmissions) * 100) / 100;
-    
+    user.averageScore = roundOverallBand(
+      (clampHalfBand(user.averageScore) * (user.totalSubmissions - 1) + overallScore) /
+        user.totalSubmissions
+    );
+
     await user.save();
 
+    const submissionPayload = normalizeSubmissionScores(savedSubmission.toObject());
     res.status(201).json({
-      submission: savedSubmission,
+      submission: {
+        ...submissionPayload,
+        question: submissionPayload.topic,
+        answer: submissionPayload.content,
+      },
+      question: questionForStore,
+      answer: message,
+      topicRelevance: evaluation.topicRelevance,
       progress: {
         writingLevel: user.writingLevel,
         currentQuestionIndex: user.currentQuestionIndex,
         averageScore: user.averageScore,
-        completedQuestions: user.completedQuestions.length
-      }
+        completedQuestions: user.completedQuestions.length,
+      },
     });
-
   } catch (error) {
-    console.error("Error in handleWriting:", error);
-    if (error.message === "Failed to get evaluation from AI service." || error.message === "Failed to parse evaluation data from AI service.") {
+    console.error('Error in handleWriting:', error);
+    if (
+      error.message === 'Failed to get evaluation from AI service.' ||
+      error.message === 'Failed to parse evaluation data from AI service.' ||
+      error.message === 'OpenAI returned empty content.'
+    ) {
       res.status(502).json({ error: `Evaluation service error: ${error.message}` });
     } else {
-      res.status(500).json({ error: 'An unexpected error occurred while processing your writing submission.' });
+      res.status(500).json({
+        error: 'An unexpected error occurred while processing your writing submission.',
+      });
     }
   }
 };
@@ -177,7 +222,6 @@ const handleWritingQuestion = async (req, res) => {
 };
 
 const getUserProgress = async (req, res) => {
-  console.log("getUserProgress", req.body);
   try {
     const userId = req.mongoUser?._id;
     if (!userId) {
@@ -189,44 +233,138 @@ const getUserProgress = async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Get level information
     const questionsPath = path.join(__dirname, '..', 'data', 'writingQuestions.json');
     const questionsData = fs.readFileSync(questionsPath, 'utf-8');
     const questionsJson = JSON.parse(questionsData);
-    
-    const currentLevel = questionsJson.levels.find(l => l.name === user.writingLevel);
+
+    const currentLevel = questionsJson.levels.find((l) => l.name === user.writingLevel);
     const currentQuestion = currentLevel?.topics[user.currentQuestionIndex];
 
-    // Get today's submission count
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
-    
+
     const dailySubmissions = await Submission.countDocuments({
-      userId: userId,
+      userId,
       submissionDate: {
         $gte: today,
-        $lt: tomorrow
-      }
+        $lt: tomorrow,
+      },
     });
+
+    const recentDocs = await Submission.find({ userId })
+      .sort({ submissionDate: -1 })
+      .limit(5)
+      .select('score submissionDate topic nextFocus')
+      .lean();
+
+    const recentScores = recentDocs.map((doc) => {
+      const score = normalizeScoreBlock(doc.score || {});
+      return {
+        date: doc.submissionDate,
+        topic: doc.topic,
+        overall: score.overallBandScore,
+        taskAchievement: score.taskAchievement,
+        coherenceAndCohesion: score.coherenceAndCohesion,
+        lexicalResource: score.lexicalResource,
+        grammaticalRangeAndAccuracy: score.grammaticalRangeAndAccuracy,
+        nextFocus: doc.nextFocus || null,
+      };
+    });
+
+    const criterionAverages = {
+      taskAchievement: 0,
+      coherenceAndCohesion: 0,
+      lexicalResource: 0,
+      grammaticalRangeAndAccuracy: 0,
+    };
+
+    if (recentScores.length) {
+      for (const key of CRITERION_KEYS) {
+        const sum = recentScores.reduce((acc, row) => acc + Number(row[key] || 0), 0);
+        criterionAverages[key] = roundOverallBand(sum / recentScores.length);
+      }
+    }
 
     res.json({
       writingLevel: user.writingLevel,
-      currentQuestion: currentQuestion,
+      currentQuestion,
       questionNumber: user.currentQuestionIndex + 1,
       totalQuestions: currentLevel?.topics.length || 0,
       completedQuestions: user.completedQuestions.length,
-      averageScore: user.averageScore,
+      averageScore: clampHalfBand(user.averageScore),
       totalSubmissions: user.totalSubmissions,
       lastSubmissionDate: user.lastSubmissionDate,
-      dailySubmissions: dailySubmissions,
-      canSubmitMore: dailySubmissions < 2
+      dailySubmissions,
+      canSubmitMore: dailySubmissions < 2,
+      recentScores,
+      criterionAverages,
     });
   } catch (error) {
-    console.error("Error getting user progress:", error);
+    console.error('Error getting user progress:', error);
     res.status(500).json({ error: 'Failed to retrieve user progress.' });
   }
 };
 
-module.exports = { handleWriting, handleWritingQuestion, getUserProgress };
+const getWritingHistory = async (req, res) => {
+  try {
+    const userId = req.mongoUser?._id;
+    if (!userId) {
+      return res.status(400).json({ error: 'User not authenticated' });
+    }
+
+    const limit = Math.min(Number(req.body?.limit) || 10, 20);
+    const docs = await Submission.find({ userId })
+      .sort({ submissionDate: -1 })
+      .limit(limit)
+      .select('topic taskType score nextFocus topicRelevance submissionDate createdAt')
+      .lean();
+
+    res.json({
+      submissions: docs.map(summarizeSubmission),
+    });
+  } catch (error) {
+    console.error('Error getting writing history:', error);
+    res.status(500).json({ error: 'Failed to retrieve writing history.' });
+  }
+};
+
+const getWritingHistoryById = async (req, res) => {
+  try {
+    const userId = req.mongoUser?._id;
+    if (!userId) {
+      return res.status(400).json({ error: 'User not authenticated' });
+    }
+
+    const { id } = req.params;
+    if (!id) {
+      return res.status(400).json({ error: 'Submission id is required' });
+    }
+
+    const submission = await Submission.findOne({ _id: id, userId }).lean();
+    if (!submission) {
+      return res.status(404).json({ error: 'Submission not found' });
+    }
+
+    const normalized = normalizeSubmissionScores(submission);
+    res.json({
+      submission: {
+        ...normalized,
+        question: normalized.topic,
+        answer: normalized.content,
+      },
+    });
+  } catch (error) {
+    console.error('Error getting writing history by id:', error);
+    res.status(500).json({ error: 'Failed to retrieve submission.' });
+  }
+};
+
+module.exports = {
+  handleWriting,
+  handleWritingQuestion,
+  getUserProgress,
+  getWritingHistory,
+  getWritingHistoryById,
+};
