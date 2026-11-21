@@ -8,6 +8,7 @@ const {
   normalizeSubmissionScores,
   CRITERION_KEYS,
 } = require('../services/writingService');
+const { extractHandwritingText } = require('../services/writingOcrService');
 const Submission = require('../models/writingModel');
 const User = require('../models/User');
 
@@ -361,10 +362,44 @@ const getWritingHistoryById = async (req, res) => {
   }
 };
 
+const handleWritingOcr = async (req, res) => {
+  try {
+    const userId = req.mongoUser?._id;
+    if (!userId) {
+      return res.status(400).json({ error: 'User not authenticated' });
+    }
+
+    const { imageBase64, mimeType } = req.body || {};
+    if (!imageBase64) {
+      return res.status(400).json({ error: 'imageBase64 is required' });
+    }
+
+    const result = await extractHandwritingText(imageBase64, mimeType);
+    // Image is not stored — only extracted text is returned
+    res.json({
+      text: result.text,
+      wordCount: result.wordCount,
+      stored: false,
+    });
+  } catch (error) {
+    console.error('Error in handleWritingOcr:', error);
+    const message = error.message || 'Failed to extract text from image.';
+    const status =
+      message.includes('required') ||
+      message.includes('Invalid') ||
+      message.includes('Only JPG') ||
+      message.includes('too large')
+        ? 400
+        : 502;
+    res.status(status).json({ error: message });
+  }
+};
+
 module.exports = {
   handleWriting,
   handleWritingQuestion,
   getUserProgress,
   getWritingHistory,
   getWritingHistoryById,
+  handleWritingOcr,
 };
