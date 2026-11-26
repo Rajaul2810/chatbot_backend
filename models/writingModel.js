@@ -17,6 +17,15 @@ const nextFocusSchema = new mongoose.Schema(
   { _id: false }
 );
 
+const bandSampleSchema = new mongoose.Schema(
+  {
+    targetBand: { type: Number, min: 1, max: 9 },
+    writing: { type: String, default: '' },
+    whyHigher: { type: [String], default: [] },
+  },
+  { _id: false }
+);
+
 const SubmissionSchema = new mongoose.Schema(
   {
     userId: {
@@ -105,6 +114,10 @@ const SubmissionSchema = new mongoose.Schema(
     nextFocus: {
       type: nextFocusSchema,
       default: () => ({}),
+    },
+    bandSamples: {
+      type: [bandSampleSchema],
+      default: [],
     },
     score: {
       taskAchievement: { type: Number, min: 0, max: 9 },

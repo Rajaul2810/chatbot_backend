@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const {
   generateWritingResponse,
+  generateBandSamples,
   clampHalfBand,
   roundOverallBand,
   normalizeScoreBlock,
@@ -101,6 +102,20 @@ const handleWriting = async (req, res) => {
     });
     const overallScore = score.overallBandScore;
 
+    // Full-band ladder samples (e.g. user 6 -> 7,8,9). Never fail the submission.
+    let bandSamples = [];
+    try {
+      bandSamples = await generateBandSamples({
+        question: questionText,
+        userInput: message,
+        userBand: overallScore,
+        taskType,
+      });
+    } catch (sampleErr) {
+      console.error('Band sample generation failed:', sampleErr);
+      bandSamples = [];
+    }
+
     const questionForStore = questionTitle || questionText;
     const submission = new Submission({
       userId,
@@ -123,6 +138,7 @@ const handleWriting = async (req, res) => {
       sentenceMistakes: evaluation.sentenceMistakes || [],
       topPriorities: evaluation.topPriorities || [],
       nextFocus: evaluation.nextFocus || {},
+      bandSamples,
       score,
       feedback: evaluation.generalFeedback,
       detailedFeedback: evaluation.detailedFeedback,

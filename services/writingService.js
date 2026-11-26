@@ -145,9 +145,10 @@ The answer must stay on this topic. Do not write about a different topic.`;
 function buildSystemPrompt({ userInput, question, taskType }) {
   const questionPrompt = buildQuestionPrompt(question);
 
-  return `You are a strict IELTS Writing examiner. Score using official IELTS Writing Band Descriptors.
+  return `You are a STRICT official-style IELTS Writing examiner. Do NOT inflate scores. A short, simple, repetitive answer must NOT receive Band 6+.
 
 Task type: ${taskType || 'Task 2'}
+For personal topics (family, food, school, routine), score Task Response like IELTS Task 2 / GT letter ideas: development, relevance, clarity—NOT Academic Task 1 chart language.
 
 ===== QUESTION (required topic) =====
 ${questionPrompt}
@@ -156,36 +157,45 @@ ${questionPrompt}
 ${userInput}
 ===== END =====
 
-Relevance check (do this FIRST before scoring):
-- Compare QUESTION topic vs STUDENT ANSWER topic carefully.
-- Example: question "My School" but answer about "My Family" = OFF-TOPIC.
-- Example: question "My Daily Routine" but answer only about food with no routine = PARTIAL or OFF-TOPIC.
-- Set topicRelevance to exactly one of: "on-topic" | "partially-related" | "off-topic"
-- Set topicMismatchReason to a short English explanation (empty string if on-topic).
+Relevance check (FIRST):
+- Compare QUESTION vs ANSWER topic.
+- topicRelevance: "on-topic" | "partially-related" | "off-topic"
+- topicMismatchReason: short English reason ("" if on-topic)
+- off-topic => taskAchievement <= 3.0
+- partially-related => taskAchievement <= 5.0
 
-Task Achievement / Task Response RULES (strict):
-- If topicRelevance is "off-topic": taskAchievement MUST be 3.0 or lower. Do NOT reward grammar/vocab by raising TA.
-- If topicRelevance is "partially-related": taskAchievement MUST be 5.0 or lower.
-- Good English on the WRONG topic still fails Task Achievement.
-- Only raise TA when the answer clearly addresses the asked question.
+OFFICIAL-STYLE BAND ANCHORS (use these; do not be generous):
+Band 9: fully addresses task; seamless cohesion; precise uncommon vocab; full flexibility/accuracy.
+Band 8: well-developed, well-organized; wide vocab skillfully used; wide grammar range, mostly error-free.
+Band 7: clear position/development; logical cohesion; sufficient range, some flexibility; frequent error-free sentences, good complex structures.
+Band 6: addresses task adequately though some parts better; generally coherent; adequate vocab for the task despite some errors; mix of simple/complex with errors that rarely reduce communication.
+Band 5: addresses task only partially / limited development; basic organization, inadequate/inaccurate cohesive devices; limited vocab, noticeable repetition; limited complex sentences, frequent errors.
+Band 4: limited response; limited coherence, basic/repetitive linking; simple vocab, frequent repetition; rare complex sentences, many errors, meaning sometimes unclear.
+Band 3 or below: very limited, off-topic, or hard to follow.
+
+ANTI-INFLATION (mandatory):
+- Clear + mostly correct simple English is NOT Band 7.
+- Heavy repetition (very/favorite/delicious/usually/I like) => lexicalResource <= 5.0
+- Mostly short simple sentences, little complex grammar => grammaticalRangeAndAccuracy <= 5.0
+- Ideas undeveloped (few details/examples/explanation) => taskAchievement <= 5.0
+- Basic linking only (and/but/because/so) with short paragraphs => coherenceAndCohesion <= 5.0
+- If MOST of the above apply, overall should be about 4.0–5.0, NEVER 6.5–7.5
+- Band 7+ requires clear development, flexible vocabulary, AND controlled complex grammar together.
 
 Scoring rules:
-- Use half-band scores ONLY: 0, 0.5, 1.0, 1.5, ... 9.0
-- NEVER use values like 5.8, 6.2, 7.8 — only .0 or .5 decimals
-- Criteria: Task Achievement (or Task Response for Task 2), Coherence and Cohesion, Lexical Resource, Grammatical Range and Accuracy
-- Score CC / LR / GRA on the writing quality of the answer, but TA must follow relevance rules above
-- overallBandScore = average of the 4 criteria, rounded to nearest 0.5
-- Be fair and specific. Cite concrete examples from the student's text.
-- Max 8 wordMistakes and 8 sentenceMistakes as { "wrong": "...", "correct": "..." }
-- topPriorities: exactly 3 short English tips (if off-topic, tip #1 must say rewrite on the correct question)
-- nextFocus: if off-topic or partially-related, criterion MUST be taskAchievement
-- AiGenerateWriting: estimate AI-generated likelihood as "0%", "10%", ... "100%"
-- AiMotivation: 1-2 short motivational sentences (English or simple Bangla)
-- AiSuggestions: short English improvement tips (newline-separated ok)
-- ReWriteImprovementVersion: rewrite a correct ON-TOPIC essay for the QUESTION (not an improved off-topic essay)
-- Also fill legacy string fields ReWriteCorrectWords and ReWriteCorrectSentences using format: ❌ wrong ❌ → ✅ correct ✅ (one pair per line)
-- generalFeedback: 2-4 English sentences; if off-topic, say clearly that the answer did not address the question
-- Return JSON ONLY. No markdown. No commentary outside JSON.
+- Half-band scores ONLY: 0, 0.5, 1.0 ... 9.0 (never 5.8 / 7.8)
+- Criteria keys: taskAchievement, coherenceAndCohesion, lexicalResource, grammaticalRangeAndAccuracy
+- overallBandScore = average of 4, rounded to nearest 0.5
+- Cite concrete examples from the student text in strengths/weaknesses
+- Max 8 wordMistakes and 8 sentenceMistakes as { "wrong", "correct" }
+- topPriorities: exactly 3 tips (off-topic => tip #1 rewrite on the question)
+- nextFocus: off/partial topic => criterion taskAchievement
+- AiGenerateWriting: "0%"..."100%"
+- AiMotivation / AiSuggestions: short
+- ReWriteImprovementVersion: ON-TOPIC improved essay for the QUESTION
+- Legacy: ReWriteCorrectWords / ReWriteCorrectSentences as ❌ wrong ❌ → ✅ correct ✅
+- generalFeedback: 2–4 sentences; state if band is limited by simplicity/repetition
+- Return JSON ONLY
 
 Required JSON shape:
 {
@@ -268,6 +278,148 @@ function applyTopicRelevanceCap(score, detailedFeedback, topicRelevance, questio
   return score;
 }
 
+const BASIC_LINKERS = new Set([
+  'and', 'but', 'because', 'so', 'then', 'also', 'or', 'when', 'if',
+]);
+
+const WEAK_REPEAT_WORDS = [
+  'very', 'favorite', 'favourite', 'delicious', 'tasty', 'usually', 'happy',
+  'good', 'nice', 'like', 'love', 'food', 'eat', 'eating',
+];
+
+function analyzeWritingFeatures(text) {
+  const raw = asString(text).trim();
+  const words = raw.toLowerCase().match(/[a-z']+/g) || [];
+  const wordCount = words.length;
+  const sentences = raw
+    .split(/[.!?]+/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+  const sentenceCount = Math.max(sentences.length, 1);
+
+  const unique = new Set(words);
+  const typeTokenRatio = wordCount ? unique.size / wordCount : 0;
+
+  const freq = {};
+  for (const w of words) freq[w] = (freq[w] || 0) + 1;
+  const repeatedWeak = WEAK_REPEAT_WORDS.filter((w) => (freq[w] || 0) >= 3).length;
+
+  let complexCount = 0;
+  for (const s of sentences) {
+    const lower = s.toLowerCase();
+    if (
+      /\b(although|however|therefore|whereas|which|who|that|while|because|if|when|after|before)\b/.test(
+        lower
+      ) ||
+      (s.match(/,/g) || []).length >= 2
+    ) {
+      complexCount += 1;
+    }
+  }
+  const complexRatio = complexCount / sentenceCount;
+
+  const linkerHits = words.filter((w) => BASIC_LINKERS.has(w)).length;
+  const advancedLinker = /\b(however|therefore|moreover|furthermore|whereas|nevertheless|in addition|as a result)\b/i.test(
+    raw
+  );
+
+  const avgSentenceLen = wordCount / sentenceCount;
+
+  return {
+    wordCount,
+    sentenceCount,
+    typeTokenRatio,
+    repeatedWeak,
+    complexRatio,
+    linkerHits,
+    advancedLinker,
+    avgSentenceLen,
+    mostlySimple:
+      complexRatio < 0.25 && avgSentenceLen > 0 && avgSentenceLen <= 16,
+    repetitive: typeTokenRatio < 0.52 || repeatedWeak >= 2,
+    underdeveloped: wordCount > 0 && wordCount < 180,
+    basicCohesion: !advancedLinker && linkerHits >= 3,
+  };
+}
+
+function capCriterion(score, detailedFeedback, key, maxBand, reason) {
+  if (score[key] <= maxBand) return;
+  score[key] = maxBand;
+  if (detailedFeedback[key]) {
+    detailedFeedback[key].score = maxBand;
+    const weaknesses = detailedFeedback[key].weaknesses || [];
+    if (reason && !weaknesses.includes(reason)) {
+      detailedFeedback[key].weaknesses = [reason, ...weaknesses].slice(0, 3);
+    }
+  }
+}
+
+/**
+ * Server-side IELTS-style guardrails so GPT cannot inflate beginner writing to 6.5–7+.
+ */
+function applyDescriptorGuardrails(score, detailedFeedback, userInput) {
+  const f = analyzeWritingFeatures(userInput);
+  if (!f.wordCount) return score;
+
+  if (f.repetitive) {
+    capCriterion(
+      score,
+      detailedFeedback,
+      'lexicalResource',
+      5.0,
+      'Vocabulary is limited and repetitive for higher IELTS bands.'
+    );
+  }
+  if (f.mostlySimple) {
+    capCriterion(
+      score,
+      detailedFeedback,
+      'grammaticalRangeAndAccuracy',
+      5.0,
+      'Mostly simple sentences; limited complex grammar range.'
+    );
+  }
+  if (f.underdeveloped || f.repetitive) {
+    capCriterion(
+      score,
+      detailedFeedback,
+      'taskAchievement',
+      5.0,
+      'Ideas are underdeveloped or too basic for Band 6+ Task Response.'
+    );
+  }
+  if (f.basicCohesion && (f.underdeveloped || f.mostlySimple)) {
+    capCriterion(
+      score,
+      detailedFeedback,
+      'coherenceAndCohesion',
+      5.0,
+      'Cohesion is basic (simple linkers) with limited organization.'
+    );
+  }
+
+  // Strong beginner pattern: short + repetitive + simple => keep overall around 4–5
+  if (f.underdeveloped && f.repetitive && f.mostlySimple) {
+    capCriterion(score, detailedFeedback, 'taskAchievement', 4.5);
+    capCriterion(score, detailedFeedback, 'coherenceAndCohesion', 4.5);
+    capCriterion(score, detailedFeedback, 'lexicalResource', 4.5);
+    capCriterion(score, detailedFeedback, 'grammaticalRangeAndAccuracy', 5.0);
+  }
+
+  // Very short answers
+  if (f.wordCount < 100) {
+    capCriterion(
+      score,
+      detailedFeedback,
+      'taskAchievement',
+      4.0,
+      'Answer is too short to fully address the task.'
+    );
+  }
+
+  return score;
+}
+
 function sanitizeEvaluation(raw = {}, context = {}) {
   const question = asString(context.question).trim() || 'the given question';
   const detailedFeedback = {};
@@ -292,6 +444,13 @@ function sanitizeEvaluation(raw = {}, context = {}) {
   const topicRelevance = normalizeTopicRelevance(raw.topicRelevance);
   const topicMismatchReason = asString(raw.topicMismatchReason).trim();
   applyTopicRelevanceCap(score, detailedFeedback, topicRelevance, question);
+  applyDescriptorGuardrails(score, detailedFeedback, context.userInput || '');
+
+  // Re-clamp after caps
+  for (const key of CRITERION_KEYS) {
+    score[key] = clampHalfBand(score[key]);
+    if (detailedFeedback[key]) detailedFeedback[key].score = score[key];
+  }
 
   const avg =
     (score.taskAchievement +
@@ -410,10 +569,12 @@ ${safeQuestion}
 STUDENT ANSWER:
 ${userInput}
 
-Remember: if the answer is about a different topic than the question, set topicRelevance to "off-topic" and keep taskAchievement <= 3.0.`,
+Rules reminder:
+- If off-topic, topicRelevance="off-topic" and taskAchievement <= 3.0.
+- Do NOT inflate. Simple repetitive beginner writing is about Band 4–5, not 7.`,
         },
       ],
-      temperature: 0.3,
+      temperature: 0.2,
       response_format: { type: 'json_object' },
     });
 
@@ -444,9 +605,111 @@ Remember: if the answer is about a different topic than the question, set topicR
   }
 };
 
+/**
+ * Full integer bands above the user's score, capped at 9.
+ * 6 / 6.5 -> [7,8,9] | 7 / 7.5 -> [8,9] | 8 / 8.5 -> [9] | 9 -> []
+ */
+function getHigherFullBands(userBand) {
+  const band = Number(userBand);
+  if (!Number.isFinite(band) || band >= 9) return [];
+  const start = Math.floor(band) + 1;
+  const targets = [];
+  for (let b = start; b <= 9; b += 1) targets.push(b);
+  return targets;
+}
+
+function sanitizeBandSamples(raw, targets) {
+  const list = Array.isArray(raw?.samples) ? raw.samples : Array.isArray(raw) ? raw : [];
+  const byBand = new Map();
+  for (const item of list) {
+    if (!item || typeof item !== 'object') continue;
+    const targetBand = Math.round(Number(item.targetBand));
+    if (!targets.includes(targetBand)) continue;
+    const writing = asString(item.writing).trim();
+    if (!writing) continue;
+    byBand.set(targetBand, {
+      targetBand,
+      writing,
+      whyHigher: asStringArray(item.whyHigher, 4),
+    });
+  }
+  return targets.map((b) => byBand.get(b)).filter(Boolean);
+}
+
+async function generateBandSamples({ question, userInput, userBand, taskType = 'Task 2' }) {
+  const targets = getHigherFullBands(userBand);
+  if (!targets.length) return [];
+
+  const systemPrompt = `You are an IELTS Writing coach. Create model answers for HIGHER FULL BANDS only.
+
+Student predicted band: ${userBand}
+Target FULL bands only: ${targets.join(', ')}
+Task type: ${taskType}
+
+Question:
+${question}
+
+Student answer (keep similar ideas/topic; upgrade quality for each target band):
+${userInput}
+
+Rules:
+- Generate one complete writing sample per target band (${targets.join(', ')}).
+- Integer bands only (no 7.5 / 8.5).
+- Same question; similar ideas as the student when on-topic.
+- Higher bands must show clearer structure, better vocabulary, stronger grammar, and fuller development.
+- For each sample include 2-4 short bullets in whyHigher explaining what makes it that band vs lower.
+- Return JSON only.
+
+JSON shape:
+{
+  "samples": [
+    {
+      "targetBand": ${targets[0]},
+      "writing": "full essay text",
+      "whyHigher": ["...", "..."]
+    }
+  ]
+}`;
+
+  try {
+    const completion = await openai.chat.completions.create({
+      model: 'gpt-4o',
+      temperature: 0.4,
+      response_format: { type: 'json_object' },
+      messages: [
+        { role: 'system', content: systemPrompt },
+        {
+          role: 'user',
+          content: `Generate model writings for bands: ${targets.join(', ')}. JSON only.`,
+        },
+      ],
+    });
+
+    const content = completion.choices[0]?.message?.content;
+    if (!content) return [];
+
+    let parsed;
+    try {
+      parsed = JSON.parse(stripMarkdownFences(content));
+    } catch (err) {
+      console.error('Failed to parse band samples:', err);
+      return [];
+    }
+
+    return sanitizeBandSamples(parsed, targets);
+  } catch (error) {
+    console.error('Error generating band samples:', error);
+    return [];
+  }
+}
+
 module.exports = {
   generateWritingResponse,
+  generateBandSamples,
+  getHigherFullBands,
   sanitizeEvaluation,
+  analyzeWritingFeatures,
+  applyDescriptorGuardrails,
   clampHalfBand,
   roundOverallBand,
   normalizeScoreBlock,
